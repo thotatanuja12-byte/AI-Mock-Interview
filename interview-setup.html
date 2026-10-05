@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interview Setup | AI Mock Interview</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f8f7fc;
+            color: #171717;
+            min-height: 100vh;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            height: 76px;
+            width: 100%;
+
+            background: white;
+            border-bottom: 1px solid #ededed;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 11px;
+
+            background: linear-gradient(
+                135deg,
+                #7357ff,
+                #9a72ff
+            );
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #7357ff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .login-btn {
+            border: none;
+            background: transparent;
+
+            padding: 10px 17px;
+
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .signup-btn {
+            border: none;
+            background: #171717;
+            color: white;
+
+            padding: 11px 20px;
+
+            border-radius: 9px;
+
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .signup-btn:hover {
+            background: #7357ff;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main-container {
+            max-width: 1050px;
+
+            margin: 0 auto;
+
+            padding: 45px 25px 80px;
+        }
+
+        /* ================= BACK ================= */
+
+        .back-button {
+            border: none;
+            background: transparent;
+
+            color: #7357ff;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            margin-bottom: 28px;
+        }
+
+        .back-button:hover {
+            color: #523bc7;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            background: #eeeaff;
+            color: #7357ff;
+
+            border: 1px solid #ddd5ff;
+
+            padding: 7px 14px;
+
+            border-radius: 30px;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: 42px;
+
+            letter-spacing: -1.3px;
+
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            color: #6b6b6b;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+        }
+
+        /* ================= SELECTED ROLE ================= */
+
+        .selected-role-card {
+            background: white;
+
+            border: 1px solid #e7e3f1;
+
+            border-radius: 15px;
+
+            padding: 20px 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 22px;
+        }
+
+        .role-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .role-icon {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 12px;
+
+            background: #eeeaff;
+
+            color: #7357ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .role-label {
+            color: #8a8a8a;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.6px;
+
+            margin-bottom: 4px;
+        }
+
+        .role-name {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .change-role {
+            border: none;
+            background: transparent;
+
+            color: #7357ff;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        /* ================= SETUP CARD ================= */
+
+        .setup-card {
+            background: white;
+
+            border: 1px solid #e7e3f1;
+
+            border-radius: 18px;
+
+            padding: 32px;
+
+            box-shadow:
+                0 12px 35px rgba(50, 35, 100, 0.05);
+        }
+
+        .section-title {
+            font-size: 18px;
+
+            margin-bottom: 18px;
+        }
+
+        /* ================= OPTION GRID ================= */
+
+        .option-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 13px;
+
+            margin-bottom: 35px;
+        }
+
+        .option-card {
+            border: 1px solid #e4e1eb;
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 17px 15px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            text-align: left;
+
+            position: relative;
+        }
+
+        .option-card:hover {
+            border-color: #a99aff;
+        }
+
+        .option-card.selected {
+            border-color: #7357ff;
+
+            background: #f6f3ff;
+
+            box-shadow:
+                0 0 0 2px rgba(115, 87, 255, 0.08);
+        }
+
+        .option-card.selected::after {
+            content: "✓";
+
+            position: absolute;
+
+            right: 11px;
+            top: 10px;
+
+            width: 19px;
+            height: 19px;
+
+            border-radius: 50%;
+
+            background: #7357ff;
+
+            color: white;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .option-title {
+            font-size: 14px;
+
+            font-weight: 800;
+
+            margin-bottom: 6px;
+        }
+
+        .option-description {
+            color: #777;
+
+            font-size: 11px;
+
+            line-height: 1.45;
+        }
+
+        /* ================= DIFFICULTY ================= */
+
+        .difficulty-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 13px;
+
+            margin-bottom: 35px;
+        }
+
+        .difficulty-card {
+            border: 1px solid #e4e1eb;
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 19px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            position: relative;
+        }
+
+        .difficulty-card:hover {
+            border-color: #a99aff;
+        }
+
+        .difficulty-card.selected {
+            border-color: #7357ff;
+
+            background: #f6f3ff;
+        }
+
+        .difficulty-card.selected::after {
+            content: "✓";
+
+            position: absolute;
+
+            right: 12px;
+            top: 12px;
+
+            width: 19px;
+            height: 19px;
+
+            border-radius: 50%;
+
+            background: #7357ff;
+
+            color: white;
+
+            font-size: 11px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .difficulty-name {
+            font-size: 15px;
+
+            font-weight: 800;
+
+            margin-bottom: 5px;
+        }
+
+        .difficulty-description {
+            color: #777;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+        /* ================= DURATION ================= */
+
+        .duration-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 13px;
+
+            margin-bottom: 35px;
+        }
+
+        .duration-card {
+            border: 1px solid #e4e1eb;
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            position: relative;
+
+            text-align: center;
+        }
+
+        .duration-card:hover {
+            border-color: #a99aff;
+        }
+
+        .duration-card.selected {
+            border-color: #7357ff;
+
+            background: #f6f3ff;
+        }
+
+        .duration-card.selected::after {
+            content: "✓";
+
+            position: absolute;
+
+            right: 11px;
+            top: 10px;
+
+            width: 19px;
+            height: 19px;
+
+            border-radius: 50%;
+
+            background: #7357ff;
+
+            color: white;
+
+            font-size: 11px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .duration-number {
+            font-size: 25px;
+
+            font-weight: 800;
+
+            color: #7357ff;
+
+            margin-bottom: 4px;
+        }
+
+        .duration-label {
+            font-size: 12px;
+
+            color: #707070;
+        }
+
+        /* ================= MEDIA ================= */
+
+        .media-section {
+            margin-bottom: 30px;
+        }
+
+        .media-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 13px;
+        }
+
+        .media-card {
+            border: 1px solid #e4e1eb;
+
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+        .media-left {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+        }
+
+        .media-icon {
+            width: 40px;
+            height: 40px;
+
+            background: #f0edff;
+
+            color: #7357ff;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 15px;
+
+            font-weight: 800;
+        }
+
+        .media-title {
+            font-size: 14px;
+
+            font-weight: 800;
+
+            margin-bottom: 4px;
+        }
+
+        .media-description {
+            color: #777;
+
+            font-size: 11px;
+        }
+
+        /* ================= TOGGLE ================= */
+
+        .toggle {
+            width: 45px;
+            height: 25px;
+
+            border-radius: 30px;
+
+            background: #d5d3db;
+
+            position: relative;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .toggle::after {
+            content: "";
+
+            position: absolute;
+
+            width: 19px;
+            height: 19px;
+
+            background: white;
+
+            border-radius: 50%;
+
+            top: 3px;
+            left: 3px;
+
+            transition: 0.2s;
+
+            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+        }
+
+        .toggle.active {
+            background: #7357ff;
+        }
+
+        .toggle.active::after {
+            left: 23px;
+        }
+
+        /* ================= TERMS ================= */
+
+        .terms {
+            margin-top: 25px;
+
+            padding: 17px;
+
+            background: #faf9fd;
+
+            border: 1px solid #eeeaf5;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 10px;
+        }
+
+        .terms input {
+            width: 17px;
+            height: 17px;
+
+            margin-top: 2px;
+
+            accent-color: #7357ff;
+
+            cursor: pointer;
+        }
+
+        .terms label {
+            color: #666;
+
+            font-size: 12px;
+
+            line-height: 1.55;
+
+            cursor: pointer;
+        }
+
+        .terms a {
+            color: #7357ff;
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+        /* ================= START BUTTON ================= */
+
+        .start-area {
+            margin-top: 27px;
+
+            display: flex;
+
+            justify-content: flex-end;
+        }
+
+        .start-button {
+            border: none;
+
+            background: #171717;
+
+            color: white;
+
+            padding: 15px 28px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .start-button:hover:not(:disabled) {
+            background: #7357ff;
+
+            transform: translateY(-2px);
+        }
+
+        .start-button:disabled {
+            background: #c8c5ce;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #171717;
+
+            color: white;
+
+            padding: 30px 7%;
+
+            text-align: center;
+        }
+
+        footer p {
+            color: #999;
+
+            font-size: 12px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .option-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .selected-role-card {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            .nav-buttons {
+                display: none;
+            }
+
+            .main-container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .header h1 {
+                font-size: 34px;
+            }
+
+            .setup-card {
+                padding: 22px 17px;
+            }
+
+            .option-grid,
+            .difficulty-grid,
+            .duration-grid,
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .start-area {
+                justify-content: stretch;
+            }
+
+            .start-button {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            AI
+        </div>
+
+        <span>
+            MockInterview
+        </span>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="index.html#features">
+            Features
+        </a>
+
+        <a href="role-based.html">
+            Roles
+        </a>
+
+        <a href="index.html#how-it-works">
+            How It Works
+        </a>
+
+        <a href="index.html#analytics">
+            Analytics
+        </a>
+
+    </div>
+
+
+    <div class="nav-buttons">
+
+        <button
+            class="login-btn"
+            onclick="login()"
+        >
+            Log In
+        </button>
+
+        <button
+            class="signup-btn"
+            onclick="signup()"
+        >
+            Sign Up
+        </button>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main-container">
+
+
+    <button
+        class="back-button"
+        onclick="goBack()"
+    >
+        ← Back to Roles
+    </button>
+
+
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="header">
+
+        <div class="badge">
+            INTERVIEW SETUP
+        </div>
+
+        <h1>
+            Customize Your <span>Interview</span>
+        </h1>
+
+        <p>
+            Choose how you want your AI mock interview to be conducted.
+        </p>
+
+    </div>
+
+
+
+    <!-- ================= SELECTED ROLE ================= -->
+
+    <div class="selected-role-card">
+
+        <div class="role-info">
+
+            <div
+                class="role-icon"
+                id="roleIcon"
+            >
+                SE
+            </div>
+
+            <div>
+
+                <div class="role-label">
+                    Selected Role
+                </div>
+
+                <div
+                    class="role-name"
+                    id="roleName"
+                >
+                    Software Engineer
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="change-role"
+            onclick="changeRole()"
+        >
+            Change Role
+        </button>
+
+    </div>
+
+
+
+    <!-- ================= SETUP CARD ================= -->
+
+    <div class="setup-card">
+
+
+        <!-- ================= ROUND ================= -->
+
+        <h2 class="section-title">
+            1. Choose Interview Round
+        </h2>
+
+
+        <div class="option-grid">
+
+
+            <div
+                class="option-card selected"
+                data-round="Warm Up"
+                onclick="selectRound(this)"
+            >
+
+                <div class="option-title">
+                    Warm Up
+                </div>
+
+                <div class="option-description">
+                    Introduction and basic conversation questions.
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="option-card"
+                data-round="Coding"
+                onclick="selectRound(this)"
+            >
+
+                <div class="option-title">
+                    Coding
+                </div>
+
+                <div class="option-description">
+                    Programming, algorithms and technical problem solving.
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="option-card"
+                data-round="Role Related"
+                onclick="selectRound(this)"
+            >
+
+                <div class="option-title">
+                    Role Related
+                </div>
+
+                <div class="option-description">
+                    Questions specific to your selected B.Tech role.
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="option-card"
+                data-round="Behavioral"
+                onclick="selectRound(this)"
+            >
+
+                <div class="option-title">
+                    Behavioral
+                </div>
+
+                <div class="option-description">
+                    Communication, teamwork and workplace situations.
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================= DIFFICULTY ================= -->
+
+        <h2 class="section-title">
+            2. Select Difficulty
+        </h2>
+
+
+        <div class="difficulty-grid">
+
+
+            <div
+                class="difficulty-card selected"
+                data-difficulty="Easy"
+                onclick="selectDifficulty(this)"
+            >
+
+                <div class="difficulty-name">
+                    Easy
+                </div>
+
+                <div class="difficulty-description">
+                    Fundamental questions suitable for beginners.
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="difficulty-card"
+                data-difficulty="Medium"
+                onclick="selectDifficulty(this)"
+            >
+
+                <div class="difficulty-name">
+                    Medium
+                </div>
+
+                <div class="difficulty-description">
+                    Intermediate questions requiring deeper understanding.
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="difficulty-card"
+                data-difficulty="Hard"
+                onclick="selectDifficulty(this)"
+            >
+
+                <div class="difficulty-name">
+                    Hard
+                </div>
+
+                <div class="difficulty-description">
+                    Advanced questions requiring strong technical reasoning.
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================= DURATION ================= -->
+
+        <h2 class="section-title">
+            3. Choose Interview Duration
+        </h2>
+
+
+        <div class="duration-grid">
+
+
+            <div
+                class="duration-card selected"
+                data-duration="5"
+                onclick="selectDuration(this)"
+            >
+
+                <div class="duration-number">
+                    5
+                </div>
+
+                <div class="duration-label">
+                    Minutes · 4 Questions
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="duration-card"
+                data-duration="15"
+                onclick="selectDuration(this)"
+            >
+
+                <div class="duration-number">
+                    15
+                </div>
+
+                <div class="duration-label">
+                    Minutes · 7 Questions
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="duration-card"
+                data-duration="30"
+                onclick="selectDuration(this)"
+            >
+
+                <div class="duration-number">
+                    30
+                </div>
+
+                <div class="duration-label">
+                    Minutes · 12 Questions
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================= AUDIO / VIDEO ================= -->
+
+        <div class="media-section">
+
+            <h2 class="section-title">
+                4. Interview Settings
+            </h2>
+
+
+            <div class="media-grid">
+
+
+                <div class="media-card">
+
+                    <div class="media-left">
+
+                        <div class="media-icon">
+                            MIC
+                        </div>
+
+                        <div>
+
+                            <div class="media-title">
+                                Microphone
+                            </div>
+
+                            <div class="media-description">
+                                Allow the AI interviewer to hear your answers.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="toggle active"
+                        id="audioToggle"
+                        onclick="toggleAudio()"
+                    ></div>
+
+                </div>
+
+
+
+                <div class="media-card">
+
+                    <div class="media-left">
+
+                        <div class="media-icon">
+                            CAM
+                        </div>
+
+                        <div>
+
+                            <div class="media-title">
+                                Camera
+                            </div>
+
+                            <div class="media-description">
+                                Enable your camera during the interview.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="toggle active"
+                        id="videoToggle"
+                        onclick="toggleVideo()"
+                    ></div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= TERMS ================= -->
+
+        <div class="terms">
+
+            <input
+                type="checkbox"
+                id="termsCheckbox"
+                onchange="checkTerms()"
+            >
+
+            <label for="termsCheckbox">
+
+                I understand that this is a practice interview
+                and agree to the interview settings and platform
+                terms before starting.
+
+                <a href="#" onclick="return false;">
+                    Terms & Conditions
+                </a>
+
+            </label>
+
+        </div>
+
+
+
+        <!-- ================= START ================= -->
+
+        <div class="start-area">
+
+            <button
+                class="start-button"
+                id="startButton"
+                disabled
+                onclick="startInterview()"
+            >
+                Start Practice →
+            </button>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        © 2026 AI MockInterview Simulator · B.Tech Interview Practice Platform
+    </p>
+
+</footer>
+
+
+
+<script>
+
+    /* =====================================================
+       GET SELECTED ROLE
+       ===================================================== */
+
+    const selectedRole =
+        localStorage.getItem("selectedRole");
+
+
+    if (!selectedRole) {
+
+        /*
+            If someone opens this page directly without
+            selecting a role, send them back to role selection.
+        */
+
+        window.location.href =
+            "role-based.html";
+
+    }
+
+
+    /* =====================================================
+       DISPLAY SELECTED ROLE
+       ===================================================== */
+
+    const roleNameElement =
+        document.getElementById("roleName");
+
+    const roleIconElement =
+        document.getElementById("roleIcon");
+
+
+    if (selectedRole) {
+
+        roleNameElement.textContent =
+            selectedRole;
+
+        roleIconElement.textContent =
+            getRoleShortName(selectedRole);
+
+    }
+
+
+    function getRoleShortName(role) {
+
+        const roleNames = {
+
+            "Software Engineer": "SE",
+
+            "Frontend Developer": "FE",
+
+            "Backend Developer": "BE",
+
+            "Full Stack Developer": "FS",
+
+            "Data Scientist": "DS",
+
+            "Data Analyst": "DA",
+
+            "Cybersecurity Engineer": "CS",
+
+            "Cloud Engineer": "CD"
+
+        };
+
+        return roleNames[role] || "AI";
+
+    }
+
+
+    /* =====================================================
+       DEFAULT SETTINGS
+       ===================================================== */
+
+    let selectedRound = "Warm Up";
+
+    let selectedDifficulty = "Easy";
+
+    let selectedDuration = "5";
+
+    let audioEnabled = true;
+
+    let videoEnabled = true;
+
+
+    /* =====================================================
+       ROUND SELECTION
+       ===================================================== */
+
+    function selectRound(card) {
+
+        document
+            .querySelectorAll(".option-card")
+            .forEach(function(item) {
+
+                item.classList.remove("selected");
+
+            });
+
+
+        card.classList.add("selected");
+
+
+        selectedRound =
+            card.getAttribute("data-round");
+
+    }
+
+
+    /* =====================================================
+       DIFFICULTY SELECTION
+       ===================================================== */
+
+    function selectDifficulty(card) {
+
+        document
+            .querySelectorAll(".difficulty-card")
+            .forEach(function(item) {
+
+                item.classList.remove("selected");
+
+            });
+
+
+        card.classList.add("selected");
+
+
+        selectedDifficulty =
+            card.getAttribute("data-difficulty");
+
+    }
+
+
+    /* =====================================================
+       DURATION SELECTION
+       ===================================================== */
+
+    function selectDuration(card) {
+
+        document
+            .querySelectorAll(".duration-card")
+            .forEach(function(item) {
+
+                item.classList.remove("selected");
+
+            });
+
+
+        card.classList.add("selected");
+
+
+        selectedDuration =
+            card.getAttribute("data-duration");
+
+    }
+
+
+    /* =====================================================
+       AUDIO TOGGLE
+       ===================================================== */
+
+    function toggleAudio() {
+
+        const toggle =
+            document.getElementById("audioToggle");
+
+
+        audioEnabled =
+            !audioEnabled;
+
+
+        toggle.classList.toggle(
+            "active",
+            audioEnabled
+        );
+
+    }
+
+
+    /* =====================================================
+       VIDEO TOGGLE
+       ===================================================== */
+
+    function toggleVideo() {
+
+        const toggle =
+            document.getElementById("videoToggle");
+
+
+        videoEnabled =
+            !videoEnabled;
+
+
+        toggle.classList.toggle(
+            "active",
+            videoEnabled
+        );
+
+    }
+
+
+    /* =====================================================
+       TERMS CHECK
+       ===================================================== */
+
+    function checkTerms() {
+
+        const checkbox =
+            document.getElementById("termsCheckbox");
+
+        const button =
+            document.getElementById("startButton");
+
+
+        button.disabled =
+            !checkbox.checked;
+
+    }
+
+
+    /* =====================================================
+       START INTERVIEW
+       ===================================================== */
+
+    function startInterview() {
+
+        const checkbox =
+            document.getElementById("termsCheckbox");
+
+
+        if (!checkbox.checked) {
+
+            alert(
+                "Please accept the Terms & Conditions before starting."
+            );
+
+            return;
+
+        }
+
+
+        /*
+            Save ALL interview settings.
+
+            The AI interview page will use these values
+            to select the correct question bank.
+        */
+
+        localStorage.setItem(
+            "selectedRole",
+            selectedRole
+        );
+
+        localStorage.setItem(
+            "selectedRound",
+            selectedRound
+        );
+
+        localStorage.setItem(
+            "selectedDifficulty",
+            selectedDifficulty
+        );
+
+        localStorage.setItem(
+            "selectedDuration",
+            selectedDuration
+        );
+
+        localStorage.setItem(
+            "audioEnabled",
+            audioEnabled
+        );
+
+        localStorage.setItem(
+            "videoEnabled",
+            videoEnabled
+        );
+
+
+        /*
+            Go to prerequisite page.
+
+            We will build this page next.
+        */
+
+        window.location.href =
+            "prerequisites.html";
+
+    }
+
+
+    /* =====================================================
+       NAVIGATION
+       ===================================================== */
+
+    function goBack() {
+
+        window.location.href =
+            "role-based.html";
+
+    }
+
+
+    function changeRole() {
+
+        window.location.href =
+            "role-based.html";
+
+    }
+
+
+    function login() {
+
+        alert(
+            "Login page will be connected later."
+        );
+
+    }
+
+
+    function signup() {
+
+        alert(
+            "Sign Up page will be connected later."
+        );
+
+    }
+
+</script>
+
+
+</body>
+</html>

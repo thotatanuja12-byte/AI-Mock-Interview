@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Choose Your Role | AI Mock Interview</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f8f7fc;
+            color: #171717;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            height: 76px;
+            width: 100%;
+            background: white;
+            border-bottom: 1px solid #ededed;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 11px;
+
+            background: linear-gradient(
+                135deg,
+                #7357ff,
+                #9a72ff
+            );
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #7357ff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .login-btn {
+            border: none;
+            background: transparent;
+
+            padding: 10px 17px;
+
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .signup-btn {
+            border: none;
+            background: #171717;
+            color: white;
+
+            padding: 11px 20px;
+
+            border-radius: 9px;
+
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .signup-btn:hover {
+            background: #7357ff;
+        }
+
+        /* ================= PAGE HEADER ================= */
+
+        .page-header {
+            text-align: center;
+
+            padding: 75px 20px 35px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            border: none;
+            background: transparent;
+
+            color: #7357ff;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            margin-bottom: 25px;
+        }
+
+        .back-button:hover {
+            color: #523bc7;
+        }
+
+        .badge {
+            display: inline-block;
+
+            background: #eeeaff;
+            color: #7357ff;
+
+            border: 1px solid #ddd5ff;
+
+            padding: 7px 14px;
+
+            border-radius: 30px;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            margin-bottom: 17px;
+        }
+
+        .page-header h1 {
+            font-size: 45px;
+
+            letter-spacing: -1.5px;
+
+            margin-bottom: 15px;
+        }
+
+        .page-header h1 span {
+            color: #7357ff;
+        }
+
+        .page-header p {
+            max-width: 650px;
+
+            margin: auto;
+
+            color: #6b6b6b;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+        }
+
+        /* ================= ROLE GRID ================= */
+
+        .roles-container {
+            max-width: 1120px;
+
+            margin: 35px auto 90px;
+
+            padding: 0 25px;
+        }
+
+        .role-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+        /* ================= ROLE CARD ================= */
+
+        .role-card {
+            position: relative;
+
+            background: white;
+
+            border: 1px solid #e6e3ed;
+
+            border-radius: 16px;
+
+            padding: 26px 22px 24px;
+
+            cursor: pointer;
+
+            min-height: 205px;
+
+            transition: all 0.22s ease;
+
+            overflow: hidden;
+        }
+
+        .role-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 80px;
+            height: 80px;
+
+            background: #f0edff;
+
+            border-radius: 50%;
+
+            right: -30px;
+            bottom: -30px;
+
+            transition: 0.25s;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+
+            border-color: #a89aff;
+
+            box-shadow:
+                0 18px 40px rgba(74, 52, 145, 0.10);
+        }
+
+        .role-card:hover::after {
+            background: #e4deff;
+
+            transform: scale(1.3);
+        }
+
+        .role-number {
+            color: #7357ff;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            margin-bottom: 18px;
+        }
+
+        .role-icon {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 12px;
+
+            background: #f0edff;
+
+            color: #7357ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+            margin-bottom: 18px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .role-card h2 {
+            font-size: 18px;
+
+            margin-bottom: 9px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .role-card p {
+            color: #737373;
+
+            font-size: 13px;
+
+            line-height: 1.55;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .arrow {
+            position: absolute;
+
+            right: 20px;
+            top: 22px;
+
+            color: #aaa;
+
+            font-size: 18px;
+
+            transition: 0.2s;
+
+            z-index: 3;
+        }
+
+        .role-card:hover .arrow {
+            color: #7357ff;
+            transform: translateX(4px);
+        }
+
+        /* ================= INFO SECTION ================= */
+
+        .info-section {
+            background: white;
+
+            border-top: 1px solid #ededed;
+
+            padding: 65px 7%;
+        }
+
+        .info-inner {
+            max-width: 1000px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 50px;
+
+            align-items: center;
+        }
+
+        .info-text .small-title {
+            color: #7357ff;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 13px;
+        }
+
+        .info-text h2 {
+            font-size: 31px;
+
+            letter-spacing: -0.8px;
+
+            margin-bottom: 15px;
+        }
+
+        .info-text p {
+            color: #6c6c6c;
+
+            font-size: 14px;
+
+            line-height: 1.75;
+        }
+
+        .info-points {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 14px;
+        }
+
+        .info-point {
+            background: #f8f7fc;
+
+            border: 1px solid #ece9f3;
+
+            padding: 17px;
+
+            border-radius: 12px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+        .info-point span {
+            color: #7357ff;
+
+            margin-right: 7px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #171717;
+
+            color: white;
+
+            padding: 35px 7%;
+
+            text-align: center;
+        }
+
+        footer p {
+            color: #999;
+
+            font-size: 12px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 950px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .role-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .info-inner {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            .nav-buttons {
+                display: none;
+            }
+
+            .page-header {
+                padding-top: 55px;
+            }
+
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .role-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-points {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            AI
+        </div>
+
+        <span>
+            MockInterview
+        </span>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="index.html#features">
+            Features
+        </a>
+
+        <a href="index.html#roles">
+            Roles
+        </a>
+
+        <a href="index.html#how-it-works">
+            How It Works
+        </a>
+
+        <a href="index.html#analytics">
+            Analytics
+        </a>
+
+    </div>
+
+
+    <div class="nav-buttons">
+
+        <button
+            class="login-btn"
+            onclick="login()"
+        >
+            Log In
+        </button>
+
+        <button
+            class="signup-btn"
+            onclick="signup()"
+        >
+            Sign Up
+        </button>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= PAGE HEADER ================= -->
+
+<section class="page-header">
+
+    <button
+        class="back-button"
+        onclick="goHome()"
+    >
+        ← Back to Home
+    </button>
+
+
+    <div class="badge">
+        B.TECH INTERVIEW PRACTICE
+    </div>
+
+
+    <h1>
+        Choose Your <span>Interview Role</span>
+    </h1>
+
+
+    <p>
+        Select the role you want to practice for.
+        Your interview questions will be selected specifically
+        according to your chosen technical role.
+    </p>
+
+</section>
+
+
+
+<!-- ================= ROLES ================= -->
+
+<section class="roles-container">
+
+    <div class="role-grid">
+
+
+        <!-- SOFTWARE ENGINEER -->
+
+        <div
+            class="role-card"
+            onclick="selectRole('Software Engineer')"
+        >
+
+            <div class="role-number">
+                ROLE 01
+            </div>
+
+            <div class="role-icon">
+                SE
+            </div>
+
+            <h2>
+                Software Engineer
+            </h2>
+
+            <p>
+                Programming, DSA, problem solving,
+                software development and technical concepts.
+            </p>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </div>
+
+
+
+        <!-- FRONTEND -->
+
+        <div
+            class="role-card"
+            onclick="selectRole('Frontend Developer')"
+        >
+
+            <div class="role-number">
+                ROLE 02
+            </div>
+
+            <div class="role-icon">
+                FE
+            </div>
+
+            <h2>
+                Frontend Developer
+            </h2>
+
+            <p>
+                HTML, CSS, JavaScript, UI development,
+                responsive design and frontend frameworks.
+            </p>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </div>
+
+
+
+        <!-- BACKEND -->
+
+        <div
+            class="role-card"
+            onclick="selectRole('Backend Developer')"
+        >
+
+            <div class="role-number">
+                ROLE 03
+            </div>
+
+            <div class="role-icon">
+                BE
+            </div>
+
+            <h2>
+                Backend Developer
+            </h2>
+
+            <p>
+                APIs, databases, server-side programming,
+                authentication and backend architecture.
+            </p>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </div>
+
+
+
+        <!-- FULL STACK -->
+
+        <div
+            class="role-card"
+            onclick="selectRole('Full Stack Developer')"
+        >
+
+            <div class="role-number">
+                ROLE 04
+            </div>
+
+            <div class="role-icon">
+                FS
+            </div>
+
+            <h2>
+                Full Stack Developer
+            </h2>
+
+            <p>
+                Frontend, backend, databases,
+                APIs and complete web applications.
+            </p>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </div>
+
+
+
+        <!-- DATA SCIENTIST -->
+
+        <div
+            class="role-card"
+            onclick="selectRole('Data Scientist')"
+        >
+
+            <div class="role-number">
+                ROLE 05
+            </div>
+
+            <div class="role-icon">
+                DS
+            </div>
+
+            <h2>
+                Data Scientist / AI-ML
+            </h2>
+
+            <p>
+                Python, statistics, machine learning,
+                data science and AI concepts.
+            </p>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </div>
+
+
+
+        <!-- DATA ANALYST -->
+
+        <div
+            class="role-card"
+            onclick="selectRole('Data Analyst')"
+        >
+
+            <div class="role-number">
+                ROLE 06
+            </div>
+
+            <div class="role-icon">
+                DA
+            </div>
+
+            <h2>
+                Data Analyst
+            </h2>
+
+            <p>
+                SQL, Python, data analysis,
+                visualization and analytical thinking.
+            </p>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </div>
+
+
+
+        <!-- CYBERSECURITY -->
+
+        <div
+            class="role-card"
+            onclick="selectRole('Cybersecurity Engineer')"
+        >
+
+            <div class="role-number">
+                ROLE 07
+            </div>
+
+            <div class="role-icon">
+                CS
+            </div>
+
+            <h2>
+                Cybersecurity Engineer
+            </h2>
+
+            <p>
+                Networks, vulnerabilities,
+                security concepts and threat protection.
+            </p>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </div>
+
+
+
+        <!-- CLOUD DEVOPS -->
+
+        <div
+            class="role-card"
+            onclick="selectRole('Cloud Engineer')"
+        >
+
+            <div class="role-number">
+                ROLE 08
+            </div>
+
+            <div class="role-icon">
+                CD
+            </div>
+
+            <h2>
+                Cloud / DevOps Engineer
+            </h2>
+
+            <p>
+                Cloud platforms, Linux, deployment,
+                containers and DevOps practices.
+            </p>
+
+            <div class="arrow">
+                →
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= INFORMATION ================= -->
+
+<section class="info-section">
+
+    <div class="info-inner">
+
+
+        <div class="info-text">
+
+            <div class="small-title">
+                Personalized Practice
+            </div>
+
+            <h2>
+                Your role determines your questions.
+            </h2>
+
+            <p>
+                The interview simulator uses a role-specific
+                question bank. Common introductory questions
+                may be shared, but technical and role-related
+                questions are selected specifically for the
+                role you choose.
+            </p>
+
+        </div>
+
+
+        <div class="info-points">
+
+            <div class="info-point">
+                <span>✓</span>
+                Role-specific questions
+            </div>
+
+            <div class="info-point">
+                <span>✓</span>
+                Easy / Medium / Hard
+            </div>
+
+            <div class="info-point">
+                <span>✓</span>
+                Coding rounds
+            </div>
+
+            <div class="info-point">
+                <span>✓</span>
+                Behavioral rounds
+            </div>
+
+            <div class="info-point">
+                <span>✓</span>
+                5 / 15 / 30 minutes
+            </div>
+
+            <div class="info-point">
+                <span>✓</span>
+                AI-powered feedback
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        © 2026 AI MockInterview Simulator · B.Tech Interview Practice Platform
+    </p>
+
+</footer>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    /*
+        Store the selected role.
+        The next page will read this value
+        and use it to create the interview setup.
+    */
+
+    function selectRole(role) {
+
+        localStorage.setItem(
+            "selectedRole",
+            role
+        );
+
+        window.location.href =
+            "interview-setup.html";
+    }
+
+
+    function goHome() {
+
+        window.location.href =
+            "index.html";
+
+    }
+
+
+    function login() {
+
+        alert(
+            "Login page will be connected later."
+        );
+
+    }
+
+
+    function signup() {
+
+        alert(
+            "Sign Up page will be connected later."
+        );
+
+    }
+
+</script>
+
+
+</body>
+</html>

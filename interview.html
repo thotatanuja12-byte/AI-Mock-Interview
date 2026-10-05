@@ -1,0 +1,4299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        AI Interview | MockInterview
+    </title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        body {
+            background: #f4f2f8;
+            color: #171717;
+            min-height: 100vh;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+           ===================================================== */
+
+        nav {
+            height: 70px;
+
+            background: white;
+
+            border-bottom: 1px solid #e6e3ec;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 5%;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        .logo {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 20px;
+
+            font-weight: 800;
+        }
+
+
+        .logo-icon {
+            width: 37px;
+            height: 37px;
+
+            border-radius: 10px;
+
+            background: linear-gradient(
+                135deg,
+                #7357ff,
+                #9a72ff
+            );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 13px;
+
+            font-weight: 800;
+        }
+
+
+        .interview-status {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 12px;
+
+            color: #666;
+
+            font-weight: 700;
+        }
+
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #24b45c;
+
+            box-shadow:
+                0 0 0 4px #e3f7ea;
+        }
+
+
+        /* =====================================================
+           MAIN
+           ===================================================== */
+
+        .main-container {
+            max-width: 1450px;
+
+            margin: auto;
+
+            padding: 22px 28px 35px;
+        }
+
+
+        /* =====================================================
+           TOP INFORMATION
+           ===================================================== */
+
+        .top-info {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 18px;
+        }
+
+
+        .interview-details {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .info-pill {
+            background: white;
+
+            border: 1px solid #e5e1ed;
+
+            border-radius: 8px;
+
+            padding: 8px 12px;
+
+            font-size: 11px;
+
+            color: #666;
+
+            font-weight: 700;
+        }
+
+
+        .info-pill strong {
+            color: #222;
+
+            margin-left: 4px;
+        }
+
+
+        .exit-button {
+            border: 1px solid #efcaca;
+
+            background: #fff5f5;
+
+            color: #d43c3c;
+
+            border-radius: 8px;
+
+            padding: 9px 16px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+
+        .exit-button:hover {
+            background: #ffe8e8;
+        }
+
+
+        /* =====================================================
+           PROGRESS
+           ===================================================== */
+
+        .progress-container {
+            margin-bottom: 18px;
+        }
+
+
+        .progress-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 7px;
+        }
+
+
+        .progress-label {
+            font-size: 11px;
+
+            font-weight: 800;
+
+            color: #555;
+        }
+
+
+        .progress-count {
+            font-size: 11px;
+
+            font-weight: 800;
+
+            color: #7357ff;
+        }
+
+
+        .progress-bar {
+            width: 100%;
+
+            height: 7px;
+
+            background: #e4e0eb;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+
+        .progress-fill {
+            width: 0%;
+
+            height: 100%;
+
+            background: linear-gradient(
+                90deg,
+                #7357ff,
+                #9b78ff
+            );
+
+            border-radius: 20px;
+
+            transition: width 0.4s ease;
+        }
+
+
+        /* =====================================================
+           INTERVIEW GRID
+           ===================================================== */
+
+        .interview-grid {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                340px;
+
+            gap: 18px;
+
+            align-items: start;
+        }
+
+
+        /* =====================================================
+           LEFT SECTION
+           ===================================================== */
+
+        .left-section {
+            min-width: 0;
+        }
+
+
+        /* =====================================================
+           INTERVIEWER CARD
+           ===================================================== */
+
+        .interviewer-card {
+            height: 530px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #d8d1c9,
+                    #f0ede8
+                );
+
+            border-radius: 18px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            border: 1px solid #dfdae4;
+
+            box-shadow:
+                0 15px 40px
+                rgba(48, 35, 75, 0.08);
+        }
+
+
+        /* office background */
+
+        .office-window {
+            position: absolute;
+
+            width: 190px;
+
+            height: 220px;
+
+            right: 55px;
+
+            top: 65px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #b9d3df,
+                    #e8eef1
+                );
+
+            border: 10px solid #b7a99e;
+
+            opacity: 0.7;
+        }
+
+
+        .office-shelf {
+            position: absolute;
+
+            width: 210px;
+
+            height: 135px;
+
+            left: 40px;
+
+            bottom: 75px;
+
+            background: #9a7762;
+
+            border-radius: 6px;
+
+            opacity: 0.55;
+        }
+
+
+        .shelf-line {
+            position: absolute;
+
+            height: 7px;
+
+            background: #765947;
+
+            left: 0;
+
+            right: 0;
+        }
+
+
+        .shelf-line.one {
+            top: 40px;
+        }
+
+
+        .shelf-line.two {
+            top: 82px;
+        }
+
+
+        /* =====================================================
+           AI AVATAR
+           ===================================================== */
+
+        .ai-avatar {
+            position: absolute;
+
+            width: 300px;
+
+            height: 420px;
+
+            left: 50%;
+
+            bottom: 0;
+
+            transform:
+                translateX(-50%);
+        }
+
+
+        .avatar-body {
+            position: absolute;
+
+            width: 300px;
+
+            height: 210px;
+
+            bottom: -20px;
+
+            left: 0;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #30394d,
+                    #171d2b
+                );
+
+            border-radius:
+                150px 150px 0 0;
+        }
+
+
+        .avatar-neck {
+            position: absolute;
+
+            width: 75px;
+
+            height: 75px;
+
+            left: 112px;
+
+            top: 218px;
+
+            background: #bb7e62;
+
+            z-index: 2;
+        }
+
+
+        .avatar-head {
+            position: absolute;
+
+            width: 150px;
+
+            height: 185px;
+
+            left: 75px;
+
+            top: 45px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #d39a7b,
+                    #b8785e
+                );
+
+            border-radius:
+                48% 48% 45% 45%;
+
+            z-index: 3;
+        }
+
+
+        .avatar-hair {
+            position: absolute;
+
+            width: 164px;
+
+            height: 110px;
+
+            left: 68px;
+
+            top: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #292027,
+                    #171318
+                );
+
+            border-radius:
+                60% 60% 35% 35%;
+
+            z-index: 4;
+        }
+
+
+        .avatar-hair-side {
+            position: absolute;
+
+            width: 32px;
+
+            height: 110px;
+
+            left: 67px;
+
+            top: 75px;
+
+            background: #21191e;
+
+            border-radius: 25px;
+
+            z-index: 4;
+        }
+
+
+        .avatar-eye {
+            position: absolute;
+
+            width: 11px;
+
+            height: 7px;
+
+            background: #30231f;
+
+            border-radius: 50%;
+
+            top: 128px;
+
+            z-index: 5;
+        }
+
+
+        .avatar-eye.left {
+            left: 105px;
+        }
+
+
+        .avatar-eye.right {
+            left: 184px;
+        }
+
+
+        .avatar-nose {
+            position: absolute;
+
+            width: 10px;
+
+            height: 22px;
+
+            border-right: 2px solid #9c624e;
+
+            top: 137px;
+
+            left: 145px;
+
+            z-index: 5;
+        }
+
+
+        .avatar-mouth {
+            position: absolute;
+
+            width: 35px;
+
+            height: 8px;
+
+            border-bottom:
+                3px solid #7d443d;
+
+            border-radius: 50%;
+
+            top: 176px;
+
+            left: 133px;
+
+            z-index: 5;
+
+            transition: 0.1s;
+        }
+
+
+        .avatar-mouth.talking {
+            height: 18px;
+
+            background: #7d443d;
+
+            border-radius: 50%;
+        }
+
+
+        /* =====================================================
+           AI LABEL
+           ===================================================== */
+
+        .ai-label {
+            position: absolute;
+
+            top: 18px;
+
+            left: 18px;
+
+            background:
+                rgba(255,255,255,0.92);
+
+            color: #7357ff;
+
+            padding: 8px 13px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            z-index: 20;
+        }
+
+
+        .ai-speaking {
+            position: absolute;
+
+            top: 18px;
+
+            right: 18px;
+
+            background:
+                rgba(115,87,255,0.92);
+
+            color: white;
+
+            padding: 8px 13px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            z-index: 20;
+
+            opacity: 0;
+
+            transition: 0.2s;
+        }
+
+
+        .ai-speaking.active {
+            opacity: 1;
+        }
+
+
+        /* =====================================================
+           TIMER
+           ===================================================== */
+
+        .timer {
+            position: absolute;
+
+            bottom: 18px;
+
+            left: 18px;
+
+            background:
+                rgba(20,20,25,0.88);
+
+            color: white;
+
+            padding: 10px 14px;
+
+            border-radius: 9px;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            z-index: 20;
+        }
+
+
+        /* =====================================================
+           CAMERA STATUS
+           ===================================================== */
+
+        .device-status {
+            position: absolute;
+
+            bottom: 18px;
+
+            right: 18px;
+
+            display: flex;
+
+            gap: 7px;
+
+            z-index: 20;
+        }
+
+
+        .device-pill {
+            background:
+                rgba(255,255,255,0.92);
+
+            color: #333;
+
+            padding: 8px 10px;
+
+            border-radius: 8px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           START ANSWER
+           ===================================================== */
+
+        .answer-button-wrapper {
+            position: absolute;
+
+            bottom: 23px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            z-index: 30;
+        }
+
+
+        .answer-button {
+            border: none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7357ff,
+                    #8c6cff
+                );
+
+            color: white;
+
+            padding: 14px 29px;
+
+            border-radius: 10px;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px
+                rgba(115,87,255,0.3);
+
+            transition: 0.2s;
+        }
+
+
+        .answer-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(115,87,255,0.4);
+        }
+
+
+        .answer-button.recording {
+            background: #d33d3d;
+
+            box-shadow:
+                0 8px 20px
+                rgba(211,61,61,0.3);
+        }
+
+
+        /* =====================================================
+           QUESTION CARD
+           ===================================================== */
+
+        .question-card {
+            background: white;
+
+            border: 1px solid #e4e0ea;
+
+            border-top:
+                4px solid #7357ff;
+
+            border-radius: 14px;
+
+            margin-top: 15px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 10px 25px
+                rgba(48,35,75,0.04);
+        }
+
+
+        .question-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 13px;
+        }
+
+
+        .question-type {
+            color: #7357ff;
+
+            background: #f0edff;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            font-weight: 900;
+        }
+
+
+        .repeat-button {
+            border: 1px solid #ddd8e7;
+
+            background: white;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            color: #555;
+
+            cursor: pointer;
+        }
+
+
+        .repeat-button:hover {
+            border-color: #7357ff;
+
+            color: #7357ff;
+        }
+
+
+        .question-text {
+            font-size: 20px;
+
+            line-height: 1.5;
+
+            font-weight: 800;
+
+            color: #202020;
+        }
+
+
+        .question-hint {
+            color: #858585;
+
+            font-size: 11px;
+
+            margin-top: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           RIGHT SIDEBAR
+           ===================================================== */
+
+        .sidebar {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+
+        .sidebar-card {
+            background: white;
+
+            border: 1px solid #e5e1ec;
+
+            border-radius: 15px;
+
+            padding: 18px;
+
+            box-shadow:
+                0 10px 25px
+                rgba(48,35,75,0.04);
+        }
+
+
+        .sidebar-title {
+            font-size: 13px;
+
+            font-weight: 900;
+
+            margin-bottom: 13px;
+        }
+
+
+        /* =====================================================
+           CAMERA
+           ===================================================== */
+
+        .camera-box {
+            height: 180px;
+
+            border-radius: 11px;
+
+            background: #202127;
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+
+        #candidateVideo {
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            transform: scaleX(-1);
+
+            display: none;
+        }
+
+
+        .camera-placeholder {
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #aaa;
+
+            font-size: 11px;
+
+            text-align: center;
+
+            padding: 20px;
+        }
+
+
+        .camera-ready {
+            position: absolute;
+
+            bottom: 9px;
+
+            left: 9px;
+
+            background:
+                rgba(20,20,20,0.75);
+
+            color: white;
+
+            padding: 5px 8px;
+
+            border-radius: 6px;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            z-index: 5;
+        }
+
+
+        /* =====================================================
+           EVALUATION
+           ===================================================== */
+
+        .evaluation-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 9px;
+        }
+
+
+        .evaluation-item {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 9px 10px;
+
+            background: #faf9fc;
+
+            border-radius: 8px;
+        }
+
+
+        .evaluation-name {
+            font-size: 10px;
+
+            font-weight: 700;
+
+            color: #555;
+        }
+
+
+        .evaluation-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #c9c5d0;
+        }
+
+
+        /* =====================================================
+           RECORDING STATUS
+           ===================================================== */
+
+        .recording-status {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 11px;
+
+            color: #777;
+
+            margin-top: 13px;
+        }
+
+
+        .recording-dot {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #c5c2cb;
+        }
+
+
+        .recording-dot.active {
+            background: #e03b3b;
+
+            box-shadow:
+                0 0 0 4px #ffe3e3;
+
+            animation:
+                pulse 1.2s infinite;
+        }
+
+
+        @keyframes pulse {
+
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.35;
+            }
+
+            100% {
+                opacity: 1;
+            }
+
+        }
+
+
+        /* =====================================================
+           CONTROLS
+           ===================================================== */
+
+        .controls {
+            display: flex;
+
+            gap: 8px;
+
+            margin-top: 15px;
+        }
+
+
+        .control-button {
+            flex: 1;
+
+            border: 1px solid #ddd8e7;
+
+            background: white;
+
+            color: #444;
+
+            padding: 10px;
+
+            border-radius: 8px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+
+        .control-button:hover {
+            border-color: #7357ff;
+
+            color: #7357ff;
+        }
+
+
+        .next-button {
+            width: 100%;
+
+            margin-top: 10px;
+
+            border: none;
+
+            background: #171717;
+
+            color: white;
+
+            padding: 12px;
+
+            border-radius: 9px;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            cursor: pointer;
+        }
+
+
+        .next-button:hover {
+            background: #7357ff;
+        }
+
+
+        .next-button:disabled {
+            background: #d2cfd7;
+
+            cursor: not-allowed;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
+
+        @media (max-width: 1050px) {
+
+            .interview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: grid;
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .main-container {
+                padding:
+                    15px;
+            }
+
+            .interview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: flex;
+            }
+
+            .interviewer-card {
+                height: 420px;
+            }
+
+            .question-text {
+                font-size: 17px;
+            }
+
+            .top-info {
+                align-items: flex-start;
+
+                gap: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<nav>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            AI
+        </div>
+
+        <span>
+            MockInterview
+        </span>
+
+    </div>
+
+
+    <div class="interview-status">
+
+        <span class="live-dot"></span>
+
+        Interview in progress
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
+
+<main class="main-container">
+
+
+    <!-- TOP INFORMATION -->
+
+    <div class="top-info">
+
+        <div class="interview-details">
+
+            <div class="info-pill">
+
+                Role:
+
+                <strong id="roleDisplay">
+                    Software Engineer
+                </strong>
+
+            </div>
+
+
+            <div class="info-pill">
+
+                Round:
+
+                <strong id="roundDisplay">
+                    Coding
+                </strong>
+
+            </div>
+
+
+            <div class="info-pill">
+
+                Level:
+
+                <strong id="difficultyDisplay">
+                    Easy
+                </strong>
+
+            </div>
+
+
+            <div class="info-pill">
+
+                Duration:
+
+                <strong id="durationDisplay">
+                    5 min
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="exit-button"
+            onclick="exitInterview()"
+        >
+            Exit Interview
+        </button>
+
+    </div>
+
+
+
+    <!-- PROGRESS -->
+
+    <div class="progress-container">
+
+        <div class="progress-top">
+
+            <span class="progress-label">
+                Interview Progress
+            </span>
+
+            <span
+                class="progress-count"
+                id="progressCount"
+            >
+                1 / 4
+            </span>
+
+        </div>
+
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                id="progressFill"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- INTERVIEW GRID -->
+
+    <div class="interview-grid">
+
+
+        <!-- =================================================
+             LEFT
+             ================================================= -->
+
+        <section class="left-section">
+
+
+            <!-- AI INTERVIEWER -->
+
+            <div class="interviewer-card">
+
+
+                <div class="ai-label">
+                    AI INTERVIEWER
+                </div>
+
+
+                <div
+                    class="ai-speaking"
+                    id="aiSpeaking"
+                >
+                    ● Speaking
+                </div>
+
+
+                <!-- Office background -->
+
+                <div class="office-window"></div>
+
+                <div class="office-shelf">
+
+                    <div class="shelf-line one"></div>
+
+                    <div class="shelf-line two"></div>
+
+                </div>
+
+
+                <!-- Avatar -->
+
+                <div class="ai-avatar">
+
+                    <div class="avatar-body"></div>
+
+                    <div class="avatar-neck"></div>
+
+                    <div class="avatar-head"></div>
+
+                    <div class="avatar-hair"></div>
+
+                    <div class="avatar-hair-side"></div>
+
+                    <div class="avatar-eye left"></div>
+
+                    <div class="avatar-eye right"></div>
+
+                    <div class="avatar-nose"></div>
+
+                    <div
+                        class="avatar-mouth"
+                        id="avatarMouth"
+                    ></div>
+
+                </div>
+
+
+                <!-- Timer -->
+
+                <div
+                    class="timer"
+                    id="timer"
+                >
+                    05:00
+                </div>
+
+
+                <!-- Device Status -->
+
+                <div class="device-status">
+
+                    <div
+                        class="device-pill"
+                        id="micIndicator"
+                    >
+                        🎤 Mic Ready
+                    </div>
+
+                    <div
+                        class="device-pill"
+                        id="cameraIndicator"
+                    >
+                        📹 Camera Ready
+                    </div>
+
+                </div>
+
+
+                <!-- Start Answer -->
+
+                <div class="answer-button-wrapper">
+
+                    <button
+                        class="answer-button"
+                        id="answerButton"
+                        onclick="toggleAnswer()"
+                    >
+                        🎙 START ANSWER
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- QUESTION -->
+
+            <div class="question-card">
+
+
+                <div class="question-header">
+
+                    <div
+                        class="question-type"
+                        id="questionType"
+                    >
+                        Main Question
+                    </div>
+
+
+                    <button
+                        class="repeat-button"
+                        onclick="repeatQuestion()"
+                    >
+                        🔊 Repeat Question
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="question-text"
+                    id="questionText"
+                >
+                    Can you tell me about yourself?
+                </div>
+
+
+                <div
+                    class="question-hint"
+                    id="questionHint"
+                >
+                    Take a moment to organize your thoughts,
+                    then click Start Answer when you are ready.
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RIGHT SIDEBAR
+             ================================================= -->
+
+        <aside class="sidebar">
+
+
+            <!-- CAMERA -->
+
+            <div class="sidebar-card">
+
+                <div class="sidebar-title">
+                    Your Camera
+                </div>
+
+
+                <div class="camera-box">
+
+                    <video
+                        id="candidateVideo"
+                        autoplay
+                        muted
+                        playsinline
+                    ></video>
+
+
+                    <div
+                        class="camera-placeholder"
+                        id="cameraPlaceholder"
+                    >
+                        Camera preview will appear here
+                    </div>
+
+
+                    <div
+                        class="camera-ready"
+                        id="cameraReady"
+                    >
+                        Camera
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="recording-status"
+                    id="recordingStatus"
+                >
+
+                    <span
+                        class="recording-dot"
+                        id="recordingDot"
+                    ></span>
+
+                    <span id="recordingText">
+                        Ready to record
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EVALUATION -->
+
+            <div class="sidebar-card">
+
+                <div class="sidebar-title">
+                    Evaluation Criteria
+                </div>
+
+
+                <div class="evaluation-list">
+
+
+                    <div class="evaluation-item">
+
+                        <span class="evaluation-name">
+                            Response Relevancy
+                        </span>
+
+                        <span class="evaluation-dot"></span>
+
+                    </div>
+
+
+                    <div class="evaluation-item">
+
+                        <span class="evaluation-name">
+                            Communication
+                        </span>
+
+                        <span class="evaluation-dot"></span>
+
+                    </div>
+
+
+                    <div class="evaluation-item">
+
+                        <span class="evaluation-name">
+                            Articulation
+                        </span>
+
+                        <span class="evaluation-dot"></span>
+
+                    </div>
+
+
+                    <div class="evaluation-item">
+
+                        <span class="evaluation-name">
+                            Confidence
+                        </span>
+
+                        <span class="evaluation-dot"></span>
+
+                    </div>
+
+
+                    <div class="evaluation-item">
+
+                        <span class="evaluation-name">
+                            Role Knowledge
+                        </span>
+
+                        <span class="evaluation-dot"></span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONTROLS -->
+
+            <div class="sidebar-card">
+
+                <div class="sidebar-title">
+                    Interview Controls
+                </div>
+
+
+                <div class="controls">
+
+                    <button
+                        class="control-button"
+                        onclick="toggleMicrophone()"
+                        id="micButton"
+                    >
+                        🎤 Mic
+                    </button>
+
+
+                    <button
+                        class="control-button"
+                        onclick="toggleCamera()"
+                        id="cameraButton"
+                    >
+                        📹 Camera
+                    </button>
+
+                </div>
+
+
+                <button
+                    class="next-button"
+                    id="nextButton"
+                    onclick="nextQuestion()"
+                    disabled
+                >
+                    Next Question →
+                </button>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</main>
+
+
+
+<script>
+
+
+/* =========================================================
+   GET SETTINGS FROM INTERVIEW SETUP
+   ========================================================= */
+
+const selectedRole =
+    localStorage.getItem("selectedRole") ||
+    "Software Engineer";
+
+
+const selectedRound =
+    localStorage.getItem("selectedRound") ||
+    "Warm Up";
+
+
+const selectedDifficulty =
+    localStorage.getItem("selectedDifficulty") ||
+    "Easy";
+
+
+const selectedDuration =
+    parseInt(
+        localStorage.getItem("selectedDuration") ||
+        "5"
+    );
+
+
+const audioEnabled =
+    localStorage.getItem("audioEnabled") !== "false";
+
+
+const videoEnabled =
+    localStorage.getItem("videoEnabled") !== "false";
+
+
+
+/* =========================================================
+   QUESTION COUNT
+   ========================================================= */
+
+const questionCountMap = {
+
+    5: 4,
+
+    15: 7,
+
+    30: 12
+
+};
+
+
+const totalQuestions =
+    questionCountMap[selectedDuration] || 4;
+
+
+
+/* =========================================================
+   DISPLAY SETTINGS
+   ========================================================= */
+
+document.getElementById(
+    "roleDisplay"
+).textContent =
+    selectedRole;
+
+
+document.getElementById(
+    "roundDisplay"
+).textContent =
+    selectedRound;
+
+
+document.getElementById(
+    "difficultyDisplay"
+).textContent =
+    selectedDifficulty;
+
+
+document.getElementById(
+    "durationDisplay"
+).textContent =
+    selectedDuration + " min";
+
+
+
+/* =========================================================
+   QUESTION DATABASE
+   ========================================================= */
+
+const roleProfiles = {
+
+    "Software Engineer": {
+        focus: [
+            "data structures and algorithms",
+            "object-oriented programming",
+            "debugging and testing",
+            "API design",
+            "database interaction",
+            "software architecture",
+            "performance optimization",
+            "version control and code reviews",
+            "scalability",
+            "concurrency",
+            "technical debt",
+            "production reliability"
+        ]
+    },
+
+    "Frontend Developer": {
+        focus: [
+            "HTML and semantic markup",
+            "CSS and responsive design",
+            "JavaScript and the DOM",
+            "React or component-based development",
+            "state management",
+            "API integration",
+            "web accessibility",
+            "browser performance",
+            "frontend security",
+            "component reusability",
+            "testing",
+            "user experience"
+        ]
+    },
+
+    "Backend Developer": {
+        focus: [
+            "REST API design",
+            "server-side programming",
+            "database design",
+            "SQL and indexing",
+            "authentication and authorization",
+            "caching",
+            "concurrency",
+            "error handling",
+            "logging and monitoring",
+            "scalability",
+            "message queues",
+            "backend security"
+        ]
+    },
+
+    "Full Stack Developer": {
+        focus: [
+            "frontend architecture",
+            "backend architecture",
+            "API integration",
+            "database design",
+            "authentication",
+            "state management",
+            "application security",
+            "testing",
+            "deployment",
+            "performance optimization",
+            "scalability",
+            "end-to-end debugging"
+        ]
+    },
+
+    "Data Scientist": {
+        focus: [
+            "data preprocessing",
+            "feature engineering",
+            "supervised learning",
+            "unsupervised learning",
+            "model evaluation",
+            "overfitting",
+            "model selection",
+            "statistics",
+            "data visualization",
+            "experiment design",
+            "model interpretability",
+            "ML deployment"
+        ]
+    },
+
+    "Data Analyst": {
+        focus: [
+            "SQL queries",
+            "data cleaning",
+            "data validation",
+            "joins and aggregations",
+            "exploratory data analysis",
+            "statistical reasoning",
+            "data visualization",
+            "dashboards",
+            "business metrics",
+            "trend analysis",
+            "data storytelling",
+            "stakeholder communication"
+        ]
+    },
+
+    "Cybersecurity Engineer": {
+        focus: [
+            "authentication and authorization",
+            "network security",
+            "vulnerability management",
+            "secure coding",
+            "SQL injection",
+            "encryption",
+            "hashing",
+            "security monitoring",
+            "incident response",
+            "access control",
+            "threat detection",
+            "security risk assessment"
+        ]
+    },
+
+    "Cloud Engineer": {
+        focus: [
+            "cloud architecture",
+            "virtual machines",
+            "containers",
+            "load balancing",
+            "auto scaling",
+            "Infrastructure as Code",
+            "CI/CD",
+            "cloud networking",
+            "identity and access management",
+            "monitoring",
+            "high availability",
+            "cloud cost optimization"
+        ]
+    }
+
+};
+
+
+/*
+   Interview setup may use a longer display name.
+   Normalize it to the internal question-bank name.
+*/
+
+const roleAliasMap = {
+
+    "Data Scientist / AI-ML Engineer": "Data Scientist",
+
+    "Cloud / DevOps Engineer": "Cloud Engineer"
+
+};
+
+
+const normalizedRole =
+    roleAliasMap[selectedRole] ||
+    selectedRole;
+
+
+const profile =
+    roleProfiles[normalizedRole] ||
+    roleProfiles["Software Engineer"];
+
+
+/* =========================================================
+   QUESTION TEMPLATES
+   ========================================================= */
+
+const questionTemplates = {
+
+    "Warm Up": {
+
+        "Easy": [
+            topic => `What interests you most about working as a ${normalizedRole}?`,
+            topic => `Which area of ${topic} would you like to become more confident in?`,
+            topic => `What first motivated you to explore ${topic}?`,
+            topic => `What kind of project would you enjoy building using ${topic}?`,
+            topic => `What is one skill related to ${topic} that you are currently improving?`,
+            topic => `Which part of ${normalizedRole} do you find most interesting?`,
+            topic => `What have you enjoyed most while learning about ${topic}?`,
+            topic => `What is one practical experience you have had with ${topic}?`,
+            topic => `How do you normally learn when you encounter an unfamiliar ${topic} concept?`,
+            topic => `What would you like to improve before starting your first professional role in ${normalizedRole}?`,
+            topic => `Which ${topic} concept would you be comfortable explaining to another student?`,
+            topic => `What motivates you to continue developing your skills as a ${normalizedRole}?`
+        ],
+
+        "Medium": [
+            topic => `What specific experience made you more interested in ${topic}?`,
+            topic => `Tell me about a project where you applied ${topic} and what you learned from it.`,
+            topic => `What has been the most challenging part of learning ${topic} for you?`,
+            topic => `How have you improved your approach to ${topic} over time?`,
+            topic => `Which part of ${topic} do you think beginners commonly misunderstand?`,
+            topic => `What type of problem would you most like to solve using ${topic}?`,
+            topic => `How do you balance learning ${topic} with strengthening your broader engineering skills?`,
+            topic => `Tell me about a situation where your understanding of ${topic} changed after practical experience.`,
+            topic => `What would make you choose ${topic} for a project rather than an alternative approach?`,
+            topic => `What is one technical decision involving ${topic} that you would like to understand more deeply?`,
+            topic => `How do you keep your knowledge of ${topic} current?`,
+            topic => `What project best demonstrates your readiness for a ${normalizedRole} position?`
+        ],
+
+        "Hard": [
+            topic => `What experience has most changed the way you think about ${topic}?`,
+            topic => `Tell me about a project where your original approach to ${topic} failed and how you adapted.`,
+            topic => `What limitation in your current understanding of ${topic} are you actively working to overcome?`,
+            topic => `How would you defend a technical decision involving ${topic} if an experienced engineer disagreed with you?`,
+            topic => `What trade-off do you think is most often overlooked when working with ${topic}?`,
+            topic => `Describe a situation where incomplete information affected a decision involving ${topic}.`,
+            topic => `How would you decide whether to deepen your expertise in ${topic} or learn a different technology?`,
+            topic => `What assumption about ${topic} did you once have to change after encountering a real problem?`,
+            topic => `What would you consider the biggest professional risk when working with ${topic}?`,
+            topic => `How would you explain a difficult ${topic} decision to a non-technical stakeholder?`,
+            topic => `What separates a competent ${normalizedRole} engineer from an exceptional one?`,
+            topic => `What is one professional weakness you are actively addressing, and how are you measuring improvement?`
+        ]
+    },
+
+
+    "Coding": {
+
+        "Easy": [
+            topic => `What is ${topic}, and why is it useful in ${normalizedRole}?`,
+            topic => `Explain the basic purpose of ${topic} with a simple example.`,
+            topic => `What common beginner mistake can occur when working with ${topic}?`,
+            topic => `How would you implement a simple solution involving ${topic}?`,
+            topic => `How would you test a basic implementation of ${topic}?`,
+            topic => `What is the simplest approach you would take to a problem involving ${topic}?`,
+            topic => `What input cases would you test first when working with ${topic}?`,
+            topic => `How would you explain ${topic} to someone who is new to programming?`,
+            topic => `What basic performance consideration applies to ${topic}?`,
+            topic => `How would you debug a simple problem involving ${topic}?`,
+            topic => `What data or inputs would you need for a small ${topic} implementation?`,
+            topic => `What would a correct beginner-level solution involving ${topic} need to handle?`
+        ],
+
+        "Medium": [
+            topic => `How would you design a solution that uses ${topic} for a realistic application?`,
+            topic => `What edge cases would you consider when implementing ${topic}?`,
+            topic => `How would you debug an implementation of ${topic} that works for some inputs but fails for others?`,
+            topic => `What is the time or resource trade-off you would consider when using ${topic}?`,
+            topic => `How would you test a ${topic} implementation before deploying it?`,
+            topic => `How would you improve an inefficient solution involving ${topic}?`,
+            topic => `What alternative approach could you use instead of ${topic}, and when would it be preferable?`,
+            topic => `How would you handle invalid or unexpected input in a ${topic}-based solution?`,
+            topic => `How would you explain the complexity of a solution involving ${topic} to another engineer?`,
+            topic => `Describe a debugging strategy for a production issue involving ${topic}.`,
+            topic => `How would you design your solution if the input size became significantly larger?`,
+            topic => `What trade-offs would you evaluate before choosing ${topic} for the solution?`
+        ],
+
+        "Hard": [
+            topic => `How would you design a production-scale solution centered around ${topic}?`,
+            topic => `How would you optimize a solution involving ${topic} when performance becomes a bottleneck?`,
+            topic => `What algorithmic or architectural trade-offs would you make when using ${topic} at scale?`,
+            topic => `How would you handle concurrency or race conditions in a system involving ${topic}?`,
+            topic => `How would you redesign a ${topic} solution if memory usage became a critical constraint?`,
+            topic => `How would you test a complex ${topic} implementation under heavy load?`,
+            topic => `How would you investigate a production failure where ${topic} appears to be the source of the problem?`,
+            topic => `How would you compare two technically correct solutions involving ${topic}?`,
+            topic => `How would you make a ${topic}-based solution fault tolerant?`,
+            topic => `How would you design monitoring for a critical component involving ${topic}?`,
+            topic => `How would you handle a tenfold increase in workload for a system using ${topic}?`,
+            topic => `What failure modes would you anticipate in an advanced ${topic} implementation?`
+        ]
+    },
+
+
+    "Role Related": {
+
+        "Easy": [
+            topic => `What is the role of ${topic} in ${normalizedRole}?`,
+            topic => `What tools are commonly used when working with ${topic}?`,
+            topic => `What is one important principle to remember when working with ${topic}?`,
+            topic => `How would you use ${topic} in a small project?`,
+            topic => `What makes a good implementation of ${topic}?`,
+            topic => `What problem does ${topic} solve?`,
+            topic => `What would you check first when working with ${topic}?`,
+            topic => `How does ${topic} contribute to a successful ${normalizedRole} project?`,
+            topic => `What is one common mistake when using ${topic}?`,
+            topic => `How would you explain the importance of ${topic} to a teammate?`,
+            topic => `What basic testing would you perform for ${topic}?`,
+            topic => `Which part of ${topic} would you like to practice more?`
+        ],
+
+        "Medium": [
+            topic => `How would you apply ${topic} when developing a real ${normalizedRole} application?`,
+            topic => `What design decision would you make before implementing ${topic}?`,
+            topic => `How would you review another engineer's implementation of ${topic}?`,
+            topic => `What trade-offs should a ${normalizedRole} engineer consider when choosing ${topic}?`,
+            topic => `How would you troubleshoot a problem involving ${topic}?`,
+            topic => `How does ${topic} interact with the other components of a typical system?`,
+            topic => `How would you improve an existing implementation of ${topic}?`,
+            topic => `What testing strategy would you use for ${topic}?`,
+            topic => `How would you document an important decision involving ${topic}?`,
+            topic => `How would you handle changing requirements affecting ${topic}?`,
+            topic => `What performance issue could arise from a poor implementation of ${topic}?`,
+            topic => `How would you decide whether a refactoring involving ${topic} is worth doing?`
+        ],
+
+        "Hard": [
+            topic => `How would you architect ${topic} for a large production system?`,
+            topic => `What scalability trade-offs would you evaluate when designing ${topic}?`,
+            topic => `How would you make a ${topic}-based component resilient to failures?`,
+            topic => `How would you handle technical debt surrounding ${topic}?`,
+            topic => `How would you secure a production implementation of ${topic}?`,
+            topic => `How would you monitor and measure the health of a system component involving ${topic}?`,
+            topic => `How would you redesign ${topic} if the system suddenly grew by ten times?`,
+            topic => `How would you balance simplicity and extensibility when designing ${topic}?`,
+            topic => `How would you respond if a senior engineer strongly disagreed with your approach to ${topic}?`,
+            topic => `What architectural mistake involving ${topic} could become expensive later, and how would you prevent it?`,
+            topic => `How would you evaluate whether an implementation of ${topic} is production ready?`,
+            topic => `What would you change in your design of ${topic} if reliability became more important than development speed?`
+        ]
+    },
+
+
+    "Behavioral": {
+
+        "Easy": [
+            topic => `Tell me about a time you worked with a team while dealing with a challenge related to ${topic}.`,
+            topic => `How do you handle receiving feedback about your work?`,
+            topic => `How do you organize yourself when learning a difficult technical topic such as ${topic}?`,
+            topic => `Tell me about a time you had to learn something quickly.`,
+            topic => `How do you handle a task when you are not initially sure how to solve it?`,
+            topic => `Tell me about a time you helped a teammate.`,
+            topic => `How do you manage your time when you have multiple tasks?`,
+            topic => `Tell me about a small mistake you made and what you learned from it.`,
+            topic => `How do you respond when your first solution does not work?`,
+            topic => `How do you communicate when you need help with a technical problem?`,
+            topic => `Tell me about a time you received useful criticism.`,
+            topic => `What do you think makes someone a good team member?`
+        ],
+
+        "Medium": [
+            topic => `Tell me about a time when a project involving ${topic} did not go as planned. What did you do?`,
+            topic => `Describe a disagreement you had with a teammate about a technical decision.`,
+            topic => `Tell me about a time you had to learn ${topic} under a tight deadline.`,
+            topic => `Describe a situation where you had to balance quality against a deadline.`,
+            topic => `Tell me about a time when you received feedback that changed your approach.`,
+            topic => `Describe a situation where you had to solve a problem with incomplete information.`,
+            topic => `Tell me about a time you had to explain a technical issue to a non-technical person.`,
+            topic => `Describe a situation where you had to prioritize competing tasks.`,
+            topic => `Tell me about a time when a teammate disagreed strongly with your approach.`,
+            topic => `Describe a technical mistake you made and the steps you took afterward.`,
+            topic => `Tell me about a time you took ownership of a problem involving ${topic}.`,
+            topic => `Describe a situation where you had to adapt quickly to a change in requirements.`
+        ],
+
+        "Hard": [
+            topic => `Tell me about a serious technical setback involving ${topic} and how you changed your approach afterward.`,
+            topic => `Describe a time when you strongly disagreed with a senior teammate about a decision involving ${topic}. How did you handle it?`,
+            topic => `Tell me about a situation where you had to make an important decision with incomplete information.`,
+            topic => `Describe a time when you failed to meet an important expectation. What specifically did you change afterward?`,
+            topic => `Tell me about a time when a project was at serious risk of missing its deadline. How did you respond?`,
+            topic => `Describe a situation where you had to convince others to accept a technical approach they initially rejected.`,
+            topic => `Tell me about a professional mistake that significantly changed how you work.`,
+            topic => `How would you respond if your manager asked you to implement a solution you believed would create serious technical debt?`,
+            topic => `Describe a situation where you had to influence a team without having formal authority.`,
+            topic => `Tell me about a time when you received difficult feedback from someone senior to you. What did you do with it?`,
+            topic => `Describe a situation where you had to choose between delivering quickly and maintaining engineering quality.`,
+            topic => `If a teammate repeatedly underperformed on a critical project, how would you handle the situation while protecting the team's outcome?`
+        ]
+    }
+
+};
+
+
+/* =========================================================
+   BUILD A UNIQUE PERSONALIZED QUESTION SET
+   ========================================================= */
+
+/*
+   =========================================================
+   PER-USER QUESTION HISTORY
+   =========================================================
+
+   Each logged-in user gets a separate history key.
+   The selected Role + Round + Difficulty also form part
+   of the key, so using Backend/Coding/Hard does not affect
+   Frontend/Warm Up/Easy.
+
+   The first question remains fixed:
+   "Can you tell me about yourself?"
+
+   The remaining questions are shuffled and selected from
+   the correct role/round/difficulty pool.
+*/
+
+function getQuestionUserKey() {
+
+    /*
+       Read the current PHP session so two different accounts
+       on the same computer can have different question history.
+       Synchronous XHR is intentional here because the question
+       set must be known before the interview page is initialized.
+    */
+
+    try {
+
+        const request =
+            new XMLHttpRequest();
+
+        request.open(
+            "GET",
+            "php/session-check.php",
+            false
+        );
+
+        request.withCredentials = true;
+
+        request.send(null);
+
+        if (
+            request.status >= 200 &&
+            request.status < 300
+        ) {
+
+            const data =
+                JSON.parse(
+                    request.responseText
+                );
+
+            if (
+                data.loggedIn &&
+                data.user
+            ) {
+
+                return (
+                    "user_" +
+                    String(
+                        data.user.id ||
+                        data.user.email ||
+                        "logged"
+                    )
+                );
+
+            }
+
+        }
+
+    } catch (error) {
+
+        console.log(
+            "Could not read login session for question history.",
+            error
+        );
+
+    }
+
+    /*
+       Fallback for demo/offline navigation.
+       This still keeps different browser profiles separated.
+    */
+    let browserId =
+        localStorage.getItem(
+            "mockInterviewBrowserId"
+        );
+
+    if (!browserId) {
+
+        browserId =
+            "browser_" +
+            Date.now() +
+            "_" +
+            Math.random()
+                .toString(36)
+                .slice(2);
+
+        localStorage.setItem(
+            "mockInterviewBrowserId",
+            browserId
+        );
+
+    }
+
+    return browserId;
+
+}
+
+
+const questionUserKey =
+    getQuestionUserKey();
+
+
+function getQuestionHistoryKey() {
+
+    return [
+        "mockInterviewQuestionHistory",
+        questionUserKey,
+        selectedRole,
+        selectedRound,
+        selectedDifficulty
+    ].join("::");
+
+}
+
+
+function readRecentQuestionHistory() {
+
+    try {
+
+        const stored =
+            JSON.parse(
+                localStorage.getItem(
+                    getQuestionHistoryKey()
+                ) || "[]"
+            );
+
+        return Array.isArray(stored)
+            ? stored
+            : [];
+
+    } catch (error) {
+
+        return [];
+
+    }
+
+}
+
+
+function saveRecentQuestionHistory(
+    selectedQuestions
+) {
+
+    try {
+
+        const oldHistory =
+            readRecentQuestionHistory();
+
+        const merged = [
+            ...oldHistory,
+            ...selectedQuestions
+        ];
+
+        /*
+           Keep a rolling history. This means a question
+           does not immediately return on the next attempt.
+        */
+        const historyLimit = 30;
+
+        const trimmed =
+            merged.slice(
+                Math.max(
+                    0,
+                    merged.length -
+                    historyLimit
+                )
+            );
+
+        localStorage.setItem(
+            getQuestionHistoryKey(),
+            JSON.stringify(trimmed)
+        );
+
+    } catch (error) {
+
+        console.log(
+            "Could not save question history.",
+            error
+        );
+
+    }
+
+}
+
+
+function shuffleArray(array) {
+
+    const copy = [
+        ...array
+    ];
+
+    /*
+       Fisher-Yates shuffle.
+       Every eligible question has an equal chance
+       of appearing in each position.
+    */
+    for (
+        let i = copy.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() *
+                (i + 1)
+            );
+
+        [
+            copy[i],
+            copy[j]
+        ] = [
+            copy[j],
+            copy[i]
+        ];
+
+    }
+
+    return copy;
+
+}
+
+
+function buildQuestionSet() {
+
+    const roundTemplates =
+        questionTemplates[selectedRound] ||
+        questionTemplates["Warm Up"];
+
+    const difficultyTemplates =
+        roundTemplates[selectedDifficulty] ||
+        roundTemplates["Easy"];
+
+    const topics =
+        profile.focus;
+
+    /*
+       Generate a large eligible pool from all available
+       templates and role-specific topics.
+
+       We do NOT simply take template 1, 2, 3 every time.
+    */
+    const generatedPool = [];
+
+    const generatedSet =
+        new Set();
+
+    for (
+        let topicIndex = 0;
+        topicIndex < topics.length;
+        topicIndex++
+    ) {
+
+        const topic =
+            topics[topicIndex];
+
+        for (
+            let templateIndex = 0;
+            templateIndex < difficultyTemplates.length;
+            templateIndex++
+        ) {
+
+            const template =
+                difficultyTemplates[
+                    templateIndex
+                ];
+
+            const question =
+                template(topic);
+
+            if (
+                question !== INTRO_QUESTION &&
+                !generatedSet.has(question)
+            ) {
+
+                generatedSet.add(
+                    question
+                );
+
+                generatedPool.push(
+                    question
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /*
+       Add generic fallback questions only if the role-specific
+       pool is smaller than required.
+    */
+    const fallbackTemplates = [
+
+        topic =>
+            `What is the biggest challenge you expect when working with ${topic}?`,
+
+        topic =>
+            `How would you improve your current approach to ${topic}?`,
+
+        topic =>
+            `What would you do if your first approach to ${topic} failed?`,
+
+        topic =>
+            `How would you measure success when working with ${topic}?`,
+
+        topic =>
+            `What risk would you consider most important when working with ${topic}?`,
+
+        topic =>
+            `How would you explain a difficult ${topic} decision to your manager?`,
+
+        topic =>
+            `What trade-off would you consider when choosing an approach to ${topic}?`,
+
+        topic =>
+            `How would you test your solution when working with ${topic}?`,
+
+        topic =>
+            `What would you monitor after implementing a solution involving ${topic}?`,
+
+        topic =>
+            `How would you troubleshoot a problem involving ${topic}?`
+
+    ];
+
+    for (
+        let i = 0;
+        i < fallbackTemplates.length;
+        i++
+    ) {
+
+        const topic =
+            topics[
+                i %
+                topics.length
+            ];
+
+        const question =
+            fallbackTemplates[i](
+                topic
+            );
+
+        if (
+            !generatedSet.has(question)
+        ) {
+
+            generatedSet.add(
+                question
+            );
+
+            generatedPool.push(
+                question
+            );
+
+        }
+
+    }
+
+
+    /*
+       Remove questions used recently by THIS USER for
+       THIS ROLE + ROUND + DIFFICULTY.
+    */
+    const recentHistory =
+        new Set(
+            readRecentQuestionHistory()
+        );
+
+    let freshPool =
+        generatedPool.filter(
+            question =>
+                !recentHistory.has(
+                    question
+                )
+        );
+
+
+    /*
+       If the user has already used most/all questions in the
+       pool, allow older questions back in rather than failing
+       to create the requested interview length.
+    */
+    if (
+        freshPool.length <
+        totalQuestions - 1
+    ) {
+
+        freshPool =
+            generatedPool;
+
+    }
+
+
+    /*
+       Randomize the eligible questions.
+    */
+    freshPool =
+        shuffleArray(
+            freshPool
+        );
+
+
+    /*
+       Q1 is intentionally fixed.
+    */
+    const result = [
+        INTRO_QUESTION
+    ];
+
+
+    /*
+       Select exactly:
+       5 min  -> 4 total
+       15 min -> 7 total
+       30 min -> 12 total
+    */
+    for (
+        let i = 0;
+        i < freshPool.length &&
+        result.length < totalQuestions;
+        i++
+    ) {
+
+        if (
+            !result.includes(
+                freshPool[i]
+            )
+        ) {
+
+            result.push(
+                freshPool[i]
+            );
+
+        }
+
+    }
+
+
+    /*
+       Final safety net. Never duplicate a question.
+    */
+    if (
+        result.length <
+        totalQuestions
+    ) {
+
+        const remaining =
+            shuffleArray(
+                generatedPool
+            );
+
+        for (
+            let i = 0;
+            i < remaining.length &&
+            result.length < totalQuestions;
+            i++
+        ) {
+
+            if (
+                !result.includes(
+                    remaining[i]
+                )
+            ) {
+
+                result.push(
+                    remaining[i]
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /*
+       Remember ONLY the non-introduction questions.
+       Q1 stays fixed and does not consume the user's
+       random-question pool.
+    */
+    saveRecentQuestionHistory(
+        result.slice(1)
+    );
+
+
+    return result;
+
+}
+
+
+const questions =
+    buildQuestionSet();
+
+
+/*
+   Safety check:
+   absolutely no duplicate questions.
+*/
+
+const uniqueQuestions =
+    [...new Set(questions)];
+
+
+/*
+   If a future question-bank change accidentally
+   introduces a duplicate, rebuild without it.
+*/
+
+if (
+    uniqueQuestions.length !==
+    questions.length
+) {
+
+    questions.length = 0;
+
+    uniqueQuestions.forEach(
+        question =>
+            questions.push(question)
+    );
+
+}
+
+
+/*
+   Ensure the interview always has exactly the
+   required number of questions whenever the
+   question bank supports it.
+*/
+
+if (
+    questions.length > totalQuestions
+) {
+
+    questions.length =
+        totalQuestions;
+
+}
+
+
+/* =========================================================
+   QUESTION DIFFICULTY DESCRIPTION
+   ========================================================= */
+
+const difficultyDescription = {
+
+    "Easy":
+        "Focus on fundamental concepts and clear practical answers.",
+
+    "Medium":
+        "Explain your reasoning, use examples, and consider practical trade-offs.",
+
+    "Hard":
+        "Expect deeper technical reasoning, scenarios, trade-offs, and challenging HR questions."
+
+};
+
+
+const questionHintElement =
+    document.getElementById(
+        "questionHint"
+    );
+
+
+/*
+   Make the selected difficulty visible
+   through the interview guidance.
+*/
+
+if (questionHintElement) {
+
+    questionHintElement.textContent =
+        difficultyDescription[
+            selectedDifficulty
+        ] ||
+        difficultyDescription["Easy"];
+
+}
+
+
+
+
+/* =========================================================
+   INTERVIEW STATE
+========================================================= */
+
+let currentQuestionIndex = 0;
+
+let answeredQuestions = 0;
+
+let isRecording = false;
+
+let mediaRecorder = null;
+
+let recordedChunks = [];
+
+let microphoneStream = null;
+
+let cameraStream = null;
+
+let interviewTimer = null;
+
+let remainingSeconds =
+    selectedDuration * 60;
+
+let questionStarted = false;
+
+/*
+   REAL ANSWER DATA
+   Each question gets its own transcript.
+*/
+let answers = [];
+
+let recognition = null;
+
+let speechFinalText = "";
+
+let latestTranscript = "";
+
+let pendingAnswerIndex = null;
+
+let questionStartTime = null;
+
+
+/* =========================================================
+   DOM REFERENCES
+   ========================================================= */
+
+const questionText =
+    document.getElementById(
+        "questionText"
+    );
+
+const questionType =
+    document.getElementById(
+        "questionType"
+    );
+
+const questionHint =
+    document.getElementById(
+        "questionHint"
+    );
+
+const progressCount =
+    document.getElementById(
+        "progressCount"
+    );
+
+const progressFill =
+    document.getElementById(
+        "progressFill"
+    );
+
+const answerButton =
+    document.getElementById(
+        "answerButton"
+    );
+
+const nextButton =
+    document.getElementById(
+        "nextButton"
+    );
+
+const timerElement =
+    document.getElementById(
+        "timer"
+    );
+
+const candidateVideo =
+    document.getElementById(
+        "candidateVideo"
+    );
+
+
+
+/* =========================================================
+   DISPLAY QUESTION
+   ========================================================= */
+
+function displayQuestion() {
+
+    const question =
+        questions[
+            currentQuestionIndex
+        ];
+
+
+    questionText.textContent =
+        question;
+
+
+    if (
+        currentQuestionIndex === 0
+    ) {
+
+        questionType.textContent =
+            "Main Question";
+
+        questionHint.textContent =
+            "Take a moment to organize your thoughts, then click Start Answer when you are ready.";
+
+    } else {
+
+        questionType.textContent =
+            "Main Question";
+
+        questionHint.textContent =
+            "Answer naturally and provide specific examples wherever possible.";
+
+    }
+
+
+    progressCount.textContent =
+        (
+            currentQuestionIndex + 1
+        ) +
+        " / " +
+        totalQuestions;
+
+
+    const percentage =
+        (
+            currentQuestionIndex /
+            totalQuestions
+        ) * 100;
+
+
+    progressFill.style.width =
+        percentage + "%";
+
+
+    nextButton.disabled = true;
+
+    questionStarted = true;
+
+    speechFinalText = "";
+
+    latestTranscript = "";
+
+    pendingAnswerIndex = null;
+
+    questionStartTime = null;
+
+    const transcriptBox =
+        document.getElementById(
+            "transcriptText"
+        );
+
+    if (transcriptBox) {
+
+        transcriptBox.textContent =
+            "Click START ANSWER and speak naturally. Your spoken answer will appear here.";
+
+        transcriptBox.classList.remove(
+            "active"
+        );
+
+    }
+
+
+    /*
+       Small visual speaking animation
+       when question is displayed.
+    */
+
+    speakQuestion(
+        question
+    );
+
+}
+
+
+
+/* =========================================================
+   AI QUESTION SPEECH
+   ========================================================= */
+
+function speakQuestion(text) {
+
+    if (
+        !("speechSynthesis" in window)
+    ) {
+
+        return;
+
+    }
+
+
+    window.speechSynthesis.cancel();
+
+
+    const speech =
+        new SpeechSynthesisUtterance(
+            text
+        );
+
+
+    speech.rate = 0.9;
+
+    speech.pitch = 1;
+
+    speech.volume = 1;
+
+
+    const speaking =
+        document.getElementById(
+            "aiSpeaking"
+        );
+
+    const mouth =
+        document.getElementById(
+            "avatarMouth"
+        );
+
+
+    speaking.classList.add(
+        "active"
+    );
+
+
+    mouth.classList.add(
+        "talking"
+    );
+
+
+    speech.onend = function() {
+
+        speaking.classList.remove(
+            "active"
+        );
+
+        mouth.classList.remove(
+            "talking"
+        );
+
+    };
+
+
+    window.speechSynthesis.speak(
+        speech
+    );
+
+}
+
+
+
+/* =========================================================
+   REPEAT QUESTION
+   ========================================================= */
+
+function repeatQuestion() {
+
+    speakQuestion(
+        questions[
+            currentQuestionIndex
+        ]
+    );
+
+}
+
+
+
+/* =========================================================
+   START CAMERA
+   ========================================================= */
+
+async function startCamera() {
+
+    if (!videoEnabled) {
+
+        document.getElementById(
+            "cameraIndicator"
+        ).textContent =
+            "📹 Camera Off";
+
+        return;
+
+    }
+
+
+    try {
+
+        cameraStream =
+            await navigator
+                .mediaDevices
+                .getUserMedia({
+                    video: true
+                });
+
+
+        candidateVideo.srcObject =
+            cameraStream;
+
+
+        candidateVideo.style.display =
+            "block";
+
+
+        document.getElementById(
+            "cameraPlaceholder"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "cameraIndicator"
+        ).textContent =
+            "📹 Camera Ready";
+
+
+    } catch (error) {
+
+        console.error(
+            "Camera error:",
+            error
+        );
+
+
+        document.getElementById(
+            "cameraIndicator"
+        ).textContent =
+            "📹 Camera Unavailable";
+
+    }
+
+}
+
+
+
+/* =========================================================
+   START MICROPHONE
+   ========================================================= */
+
+async function startMicrophone() {
+
+    if (!audioEnabled) {
+
+        document.getElementById(
+            "micIndicator"
+        ).textContent =
+            "🎤 Mic Off";
+
+        return;
+
+    }
+
+
+    try {
+
+        microphoneStream =
+            await navigator
+                .mediaDevices
+                .getUserMedia({
+                    audio: true
+                });
+
+
+        document.getElementById(
+            "micIndicator"
+        ).textContent =
+            "🎤 Mic Ready";
+
+
+    } catch (error) {
+
+        console.error(
+            "Microphone error:",
+            error
+        );
+
+
+        document.getElementById(
+            "micIndicator"
+        ).textContent =
+            "🎤 Mic Unavailable";
+
+    }
+
+}
+
+
+
+/* =========================================================
+   SPEECH RECOGNITION
+   ========================================================= */
+
+function setupSpeechRecognition() {
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+        return null;
+    }
+
+    const recognitionInstance =
+        new SpeechRecognition();
+
+    recognitionInstance.lang =
+        "en-IN";
+
+    recognitionInstance.continuous =
+        true;
+
+    recognitionInstance.interimResults =
+        true;
+
+    recognitionInstance.onresult =
+        function(event) {
+
+            let interim = "";
+
+            let finalText =
+                speechFinalText;
+
+            for (
+                let i = event.resultIndex;
+                i < event.results.length;
+                i++
+            ) {
+
+                const transcript =
+                    event.results[i][0].transcript;
+
+                if (
+                    event.results[i].isFinal
+                ) {
+
+                    finalText +=
+                        transcript + " ";
+
+                } else {
+
+                    interim +=
+                        transcript;
+
+                }
+
+            }
+
+            speechFinalText =
+                finalText;
+
+            latestTranscript =
+                (finalText + interim).trim();
+
+            const transcriptBox =
+                document.getElementById(
+                    "transcriptText"
+                );
+
+            if (transcriptBox) {
+
+                transcriptBox.textContent =
+                    latestTranscript ||
+                    "Listening to your answer...";
+
+            }
+
+        };
+
+    recognitionInstance.onerror =
+        function(event) {
+
+            console.log(
+                "Speech recognition:",
+                event.error
+            );
+
+        };
+
+    recognitionInstance.onend =
+        function() {
+
+            /*
+               If the user pressed STOP ANSWER, Chrome can deliver
+               the final speech result just before/around onend.
+               Save the captured transcript after recognition ends.
+            */
+            if (
+                !isRecording &&
+                pendingAnswerIndex !== null
+            ) {
+
+                const index =
+                    pendingAnswerIndex;
+
+                const finalAnswer =
+                    (
+                        speechFinalText ||
+                        latestTranscript ||
+                        ""
+                    ).trim();
+
+                answers[index] = {
+
+                    question:
+                        questions[index],
+
+                    answer:
+                        finalAnswer,
+
+                    duration:
+                        questionStartTime
+                            ? Math.round(
+                                (
+                                    Date.now() -
+                                    questionStartTime
+                                ) / 1000
+                            )
+                            : 0
+
+                };
+
+                pendingAnswerIndex = null;
+
+                persistInterviewSession();
+
+                const transcriptBox =
+                    document.getElementById(
+                        "transcriptText"
+                    );
+
+                if (transcriptBox) {
+
+                    transcriptBox.textContent =
+                        finalAnswer ||
+                        "No speech was detected for this answer.";
+
+                }
+
+            }
+
+        };
+
+    return recognitionInstance;
+}
+
+
+function saveCurrentAnswer(
+    index = currentQuestionIndex
+) {
+
+    const answer =
+        (
+            speechFinalText ||
+            latestTranscript ||
+            ""
+        ).trim();
+
+    answers[index] = {
+
+        question:
+            questions[index],
+
+        answer:
+            answer,
+
+        duration:
+            questionStartTime
+                ? Math.round(
+                    (
+                        Date.now() -
+                        questionStartTime
+                    ) / 1000
+                )
+                : 0
+
+    };
+
+}
+
+
+function persistInterviewSession() {
+
+    const session = {
+
+        role:
+            selectedRole,
+
+        round:
+            selectedRound,
+
+        difficulty:
+            selectedDifficulty,
+
+        duration:
+            selectedDuration,
+
+        totalQuestions:
+            questions.length,
+
+        practicedOn:
+            new Date().toISOString(),
+
+        answers:
+            questions.map(
+                function(question, index) {
+
+                    const item =
+                        answers[index];
+
+                    return {
+
+                        question:
+                            question,
+
+                        answer:
+                            item &&
+                            typeof item.answer ===
+                            "string"
+                                ? item.answer.trim()
+                                : "",
+
+                        duration:
+                            item &&
+                            item.duration
+                                ? item.duration
+                                : 0
+
+                    };
+
+                }
+            )
+
+    };
+
+    localStorage.setItem(
+        "interviewSession",
+        JSON.stringify(session)
+    );
+
+}
+
+
+/* =========================================================
+   RECORD ANSWER
+   ========================================================= */
+
+async function startRecording() {
+
+    if (!audioEnabled) {
+
+        alert(
+            "Microphone is disabled for this interview."
+        );
+
+        return;
+
+    }
+
+
+    if (!microphoneStream) {
+
+        await startMicrophone();
+
+    }
+
+
+    if (!microphoneStream) {
+
+        alert(
+            "Microphone access is required to record your answer."
+        );
+
+        return;
+
+    }
+
+
+    recordedChunks = [];
+
+    speechFinalText = "";
+
+    latestTranscript = "";
+
+    pendingAnswerIndex = null;
+
+    questionStartTime =
+        Date.now();
+
+    if (!recognition) {
+
+        recognition =
+            setupSpeechRecognition();
+
+    }
+
+    const transcriptBox =
+        document.getElementById(
+            "transcriptText"
+        );
+
+    if (transcriptBox) {
+
+        transcriptBox.textContent =
+            "Listening to your answer...";
+
+        transcriptBox.classList.add(
+            "active"
+        );
+
+    }
+
+
+    try {
+
+        mediaRecorder =
+            new MediaRecorder(
+                microphoneStream
+            );
+
+
+        mediaRecorder.ondataavailable =
+            function(event) {
+
+                if (
+                    event.data.size > 0
+                ) {
+
+                    recordedChunks.push(
+                        event.data
+                    );
+
+                }
+
+            };
+
+
+        mediaRecorder.onstop =
+            function() {
+
+                const blob =
+                    new Blob(
+                        recordedChunks,
+                        {
+                            type:
+                                "audio/webm"
+                        }
+                    );
+
+
+                /*
+                   Keep the current answer
+                   available for the analytics
+                   page.
+                */
+
+                window.currentAnswerBlob =
+                    blob;
+
+            };
+
+
+        mediaRecorder.start();
+
+        if (recognition) {
+
+            try {
+                recognition.start();
+            } catch (error) {}
+
+        }
+
+        isRecording = true;
+
+
+        answerButton.textContent =
+            "■ STOP ANSWER";
+
+
+        answerButton.classList.add(
+            "recording"
+        );
+
+
+        document.getElementById(
+            "recordingDot"
+        ).classList.add(
+            "active"
+        );
+
+
+        document.getElementById(
+            "recordingText"
+        ).textContent =
+            "Recording your answer...";
+
+
+        nextButton.disabled = true;
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to start recording."
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   STOP RECORDING
+   ========================================================= */
+
+function stopRecording() {
+
+    const answerIndex =
+        currentQuestionIndex;
+
+    /*
+       Capture whatever Chrome has already displayed, including
+       interim speech such as "My name is Sanjana".
+    */
+    const answerBeforeStop =
+        (
+            speechFinalText ||
+            latestTranscript ||
+            ""
+        ).trim();
+
+    pendingAnswerIndex =
+        answerIndex;
+
+    isRecording = false;
+
+    if (recognition) {
+
+        try {
+            recognition.stop();
+        } catch (error) {}
+
+    }
+
+    /*
+       Save immediately using the latest available transcript.
+       recognition.onend will run afterward and replace this with
+       the final transcript if Chrome supplies one.
+    */
+    answers[answerIndex] = {
+
+        question:
+            questions[answerIndex],
+
+        answer:
+            answerBeforeStop,
+
+        duration:
+            questionStartTime
+                ? Math.round(
+                    (
+                        Date.now() -
+                        questionStartTime
+                    ) / 1000
+                )
+                : 0
+
+    };
+
+    persistInterviewSession();
+
+    if (
+        mediaRecorder &&
+        mediaRecorder.state !==
+        "inactive"
+    ) {
+
+        mediaRecorder.stop();
+
+    }
+
+    answerButton.textContent =
+        "✓ ANSWER RECORDED";
+
+    answerButton.classList.remove(
+        "recording"
+    );
+
+    document.getElementById(
+        "recordingDot"
+    ).classList.remove(
+        "active"
+    );
+
+    document.getElementById(
+        "recordingText"
+    ).textContent =
+        answerBeforeStop
+            ? "Answer recorded"
+            : "No speech detected";
+
+    nextButton.disabled =
+        false;
+
+    const transcriptBox =
+        document.getElementById(
+            "transcriptText"
+        );
+
+    if (transcriptBox) {
+
+        transcriptBox.textContent =
+            answerBeforeStop ||
+            "No speech was detected for this answer.";
+
+        if (answerBeforeStop) {
+
+            transcriptBox.classList.add(
+                "active"
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   START / STOP ANSWER
+   ========================================================= */
+
+function toggleAnswer() {
+
+    if (isRecording) {
+
+        stopRecording();
+
+    } else {
+
+        startRecording();
+
+    }
+
+}
+
+
+
+/* =========================================================
+   NEXT QUESTION
+   ========================================================= */
+
+function nextQuestion() {
+
+    if (isRecording) {
+
+        stopRecording();
+
+    }
+
+    /*
+       If the user moves forward without answering,
+       explicitly store an empty answer.
+    */
+    if (
+        !answers[currentQuestionIndex]
+    ) {
+
+        answers[currentQuestionIndex] = {
+
+            question:
+                questions[currentQuestionIndex],
+
+            answer:
+                "",
+
+            duration:
+                0
+
+        };
+
+    }
+
+    /*
+       The answer is already stored against the captured
+       question index. Do not overwrite it while recognition
+       is finishing.
+    */
+    persistInterviewSession();
+
+
+    answeredQuestions++;
+
+
+    if (
+        currentQuestionIndex >=
+        totalQuestions - 1
+    ) {
+
+        finishInterview();
+
+        return;
+
+    }
+
+
+    currentQuestionIndex++;
+
+
+    answerButton.textContent =
+        "🎙 START ANSWER";
+
+
+    nextButton.disabled = true;
+
+
+    displayQuestion();
+
+}
+
+
+
+/* =========================================================
+   FINISH INTERVIEW
+   ========================================================= */
+
+function finishInterview() {
+
+    if (isRecording) {
+
+        stopRecording();
+
+    }
+
+    /*
+       Preserve the current question as unanswered if
+       the interview ended before the user spoke.
+    */
+    if (
+        !answers[currentQuestionIndex]
+    ) {
+
+        answers[currentQuestionIndex] = {
+
+            question:
+                questions[currentQuestionIndex],
+
+            answer:
+                "",
+
+            duration:
+                0
+
+        };
+
+    }
+
+    persistInterviewSession();
+
+    clearInterval(
+        interviewTimer
+    );
+
+    if (
+        window.speechSynthesis
+    ) {
+
+        window.speechSynthesis.cancel();
+
+    }
+
+    if (recognition) {
+
+        try {
+            recognition.stop();
+        } catch (error) {}
+
+    }
+
+    localStorage.setItem(
+        "interviewCompleted",
+        "true"
+    );
+
+    localStorage.setItem(
+        "completedRole",
+        selectedRole
+    );
+
+    localStorage.setItem(
+        "completedRound",
+        selectedRound
+    );
+
+    localStorage.setItem(
+        "completedDifficulty",
+        selectedDifficulty
+    );
+
+    localStorage.setItem(
+        "completedDuration",
+        selectedDuration
+    );
+
+    localStorage.setItem(
+        "completedQuestionCount",
+        totalQuestions
+    );
+
+    window.location.href =
+        "processing.html";
+
+}
+
+
+/* =========================================================
+   TIMER
+   ========================================================= */
+
+function startTimer() {
+
+    updateTimerDisplay();
+
+
+    interviewTimer =
+        setInterval(
+            function() {
+
+                remainingSeconds--;
+
+
+                updateTimerDisplay();
+
+
+                if (
+                    remainingSeconds <= 0
+                ) {
+
+                    clearInterval(
+                        interviewTimer
+                    );
+
+
+                    alert(
+                        "Your interview time has ended."
+                    );
+
+
+                    finishInterview();
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+
+/* =========================================================
+   TIMER DISPLAY
+   ========================================================= */
+
+function updateTimerDisplay() {
+
+    const minutes =
+        Math.floor(
+            remainingSeconds / 60
+        );
+
+
+    const seconds =
+        remainingSeconds % 60;
+
+
+    timerElement.textContent =
+        String(minutes).padStart(
+            2,
+            "0"
+        ) +
+        ":" +
+        String(seconds).padStart(
+            2,
+            "0"
+        );
+
+
+    if (
+        remainingSeconds <= 30
+    ) {
+
+        timerElement.style.background =
+            "#b52d2d";
+
+    }
+
+}
+
+
+
+/* =========================================================
+   MICROPHONE TOGGLE
+   ========================================================= */
+
+async function toggleMicrophone() {
+
+    if (!audioEnabled) {
+
+        alert(
+            "Microphone was disabled in Interview Setup."
+        );
+
+        return;
+
+    }
+
+
+    if (microphoneStream) {
+
+        const tracks =
+            microphoneStream
+                .getAudioTracks();
+
+
+        if (
+            tracks.length > 0 &&
+            tracks[0].enabled
+        ) {
+
+            tracks[0].enabled =
+                false;
+
+
+            document.getElementById(
+                "micButton"
+            ).textContent =
+                "🔇 Mic Off";
+
+
+            document.getElementById(
+                "micIndicator"
+            ).textContent =
+                "🔇 Mic Off";
+
+        } else {
+
+            tracks[0].enabled =
+                true;
+
+
+            document.getElementById(
+                "micButton"
+            ).textContent =
+                "🎤 Mic";
+
+
+            document.getElementById(
+                "micIndicator"
+            ).textContent =
+                "🎤 Mic Ready";
+
+        }
+
+
+    } else {
+
+        await startMicrophone();
+
+    }
+
+}
+
+
+
+/* =========================================================
+   CAMERA TOGGLE
+   ========================================================= */
+
+async function toggleCamera() {
+
+    if (!videoEnabled) {
+
+        alert(
+            "Camera was disabled in Interview Setup."
+        );
+
+        return;
+
+    }
+
+
+    if (cameraStream) {
+
+        const tracks =
+            cameraStream
+                .getVideoTracks();
+
+
+        if (
+            tracks.length > 0 &&
+            tracks[0].enabled
+        ) {
+
+            tracks[0].enabled =
+                false;
+
+
+            document.getElementById(
+                "cameraButton"
+            ).textContent =
+                "📷 Camera Off";
+
+
+            document.getElementById(
+                "cameraIndicator"
+            ).textContent =
+                "📷 Camera Off";
+
+        } else {
+
+            tracks[0].enabled =
+                true;
+
+
+            document.getElementById(
+                "cameraButton"
+            ).textContent =
+                "📹 Camera";
+
+
+            document.getElementById(
+                "cameraIndicator"
+            ).textContent =
+                "📹 Camera Ready";
+
+        }
+
+    } else {
+
+        await startCamera();
+
+    }
+
+}
+
+
+
+/* =========================================================
+   EXIT INTERVIEW
+   ========================================================= */
+
+function exitInterview() {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to exit the interview? Your current progress will not be submitted."
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    cleanupMedia();
+
+
+    window.location.href =
+        "role-based.html";
+
+}
+
+
+
+/* =========================================================
+   CLEANUP MEDIA
+   ========================================================= */
+
+function cleanupMedia() {
+
+    if (microphoneStream) {
+
+        microphoneStream
+            .getTracks()
+            .forEach(
+                track => track.stop()
+            );
+
+    }
+
+
+    if (cameraStream) {
+
+        cameraStream
+            .getTracks()
+            .forEach(
+                track => track.stop()
+            );
+
+    }
+
+
+    if (
+        window.speechSynthesis
+    ) {
+
+        window.speechSynthesis.cancel();
+
+    }
+
+
+    clearInterval(
+        interviewTimer
+    );
+
+}
+
+
+
+/* =========================================================
+   PAGE INITIALIZATION
+   ========================================================= */
+
+async function initializeInterview() {
+
+    /*
+       Make sure the prerequisite page
+       was completed.
+    */
+
+    const prerequisitesCompleted =
+        localStorage.getItem(
+            "prerequisitesCompleted"
+        );
+
+
+    if (
+        prerequisitesCompleted !==
+        "true"
+    ) {
+
+        window.location.href =
+            "prerequisites.html";
+
+        return;
+
+    }
+
+
+    displayQuestion();
+
+
+    await startCamera();
+
+
+    await startMicrophone();
+
+
+    startTimer();
+
+}
+
+
+
+/* =========================================================
+   PAGE EXIT CLEANUP
+   ========================================================= */
+
+window.addEventListener(
+    "beforeunload",
+    function() {
+
+        cleanupMedia();
+
+    }
+);
+
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+initializeInterview();
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Mock Interview Simulator</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f8f9fc;
+            color: #171717;
+            overflow-x: hidden;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            width: 100%;
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            background: rgba(255,255,255,0.96);
+            border-bottom: 1px solid #eeeeee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 800;
+            color: #171717;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            background: linear-gradient(135deg, #7357ff, #9a72ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #444;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #7257ff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .login-btn {
+            border: none;
+            background: transparent;
+            padding: 11px 18px;
+            font-weight: 700;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .signup-btn {
+            border: none;
+            background: #171717;
+            color: white;
+            padding: 12px 21px;
+            border-radius: 9px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .signup-btn:hover {
+            background: #7257ff;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 690px;
+            padding: 95px 7% 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            background:
+                radial-gradient(circle at 80% 20%, rgba(125,91,255,0.14), transparent 28%),
+                radial-gradient(circle at 15% 60%, rgba(140,100,255,0.08), transparent 30%),
+                #faf9ff;
+        }
+
+        .hero-left {
+            width: 53%;
+        }
+
+        .small-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #eeeaff;
+            color: #6a4ff5;
+            border: 1px solid #ddd5ff;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .small-badge span {
+            width: 7px;
+            height: 7px;
+            background: #7357ff;
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 5.5vw, 74px);
+            line-height: 1.02;
+            letter-spacing: -3px;
+            margin-bottom: 25px;
+            color: #151515;
+        }
+
+        .hero h1 .highlight {
+            color: #7257ff;
+        }
+
+        .hero-description {
+            max-width: 620px;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #626262;
+            margin-bottom: 34px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .primary-btn {
+            border: none;
+            background: #171717;
+            color: white;
+            padding: 15px 27px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .primary-btn:hover {
+            background: #7257ff;
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            border: 1px solid #d8d8d8;
+            background: white;
+            color: #333;
+            padding: 14px 25px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .secondary-btn:hover {
+            border-color: #7257ff;
+            color: #7257ff;
+        }
+
+        /* ================= HERO VISUAL ================= */
+
+        .hero-right {
+            width: 43%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .interview-preview {
+            width: 520px;
+            max-width: 100%;
+            background: white;
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 25px 70px rgba(52,38,100,0.16);
+            border: 1px solid #ece8fa;
+            transform: rotate(1deg);
+        }
+
+        .preview-top {
+            height: 35px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding-left: 8px;
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #d8d8d8;
+        }
+
+        .preview-body {
+            background: #f3f1fa;
+            border-radius: 13px;
+            padding: 15px;
+        }
+
+        .video-area {
+            height: 255px;
+            border-radius: 11px;
+            background:
+                linear-gradient(rgba(34,28,50,0.12), rgba(34,28,50,0.12)),
+                linear-gradient(135deg, #ded8eb, #bdb4ce);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar {
+            width: 145px;
+            height: 190px;
+            border-radius: 70px 70px 35px 35px;
+            background: linear-gradient(145deg, #d5b6a3, #a77c68);
+            position: relative;
+            margin-top: 40px;
+        }
+
+        .avatar::before {
+            content: "";
+            position: absolute;
+            width: 105px;
+            height: 120px;
+            background: #e1bda9;
+            border-radius: 50%;
+            top: -27px;
+            left: 20px;
+        }
+
+        .hair {
+            position: absolute;
+            width: 120px;
+            height: 85px;
+            background: #302522;
+            border-radius: 65px 65px 25px 25px;
+            top: -39px;
+            left: 13px;
+            z-index: 2;
+        }
+
+        .preview-button {
+            position: absolute;
+            bottom: 17px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #7357ff;
+            color: white;
+            padding: 11px 19px;
+            border-radius: 9px;
+            font-size: 12px;
+            font-weight: 800;
+            z-index: 5;
+        }
+
+        .preview-bottom {
+            margin-top: 12px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .question-preview {
+            flex: 1;
+            background: white;
+            padding: 13px;
+            border-radius: 9px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #444;
+        }
+
+        .side-preview {
+            width: 120px;
+            background: white;
+            border-radius: 9px;
+            padding: 12px;
+            font-size: 10px;
+        }
+
+        .progress {
+            height: 6px;
+            background: #e8e4f4;
+            border-radius: 10px;
+            margin-top: 9px;
+        }
+
+        .progress-fill {
+            width: 45%;
+            height: 100%;
+            background: #7357ff;
+            border-radius: 10px;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section {
+            padding: 95px 7%;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .section-heading .label {
+            color: #7357ff;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 13px;
+        }
+
+        .section-heading h2 {
+            font-size: 42px;
+            letter-spacing: -1.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-heading p {
+            color: #686868;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* ================= FEATURE CARDS ================= */
+
+        .features {
+            background: white;
+        }
+
+        .feature-grid {
+            max-width: 1150px;
+            margin: 55px auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            border: 1px solid #ececec;
+            border-radius: 15px;
+            background: white;
+            transition: 0.25s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.07);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #eeeaff;
+            color: #7257ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+            font-weight: 800;
+            margin-bottom: 22px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            font-size: 19px;
+        }
+
+        .feature-card p {
+            color: #6a6a6a;
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        /* ================= ROLE SECTION ================= */
+
+        .roles-section {
+            background: #f8f7fc;
+        }
+
+        .role-grid {
+            max-width: 1100px;
+            margin: 55px auto 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .role-card {
+            background: white;
+            border: 1px solid #e9e6f0;
+            border-radius: 14px;
+            padding: 25px 20px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .role-card:hover {
+            transform: translateY(-4px);
+            border-color: #a493ff;
+            box-shadow: 0 14px 35px rgba(82,60,150,0.08);
+        }
+
+        .role-number {
+            color: #7357ff;
+            font-weight: 800;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .role-card h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .role-card p {
+            color: #777;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* ================= HOW IT WORKS ================= */
+
+        .steps {
+            max-width: 1050px;
+            margin: 55px auto 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            margin: auto auto 20px;
+            border-radius: 50%;
+            background: #171717;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .step h3 {
+            margin-bottom: 9px;
+            font-size: 17px;
+        }
+
+        .step p {
+            color: #707070;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* ================= ANALYTICS ================= */
+
+        .analytics-section {
+            background: #171717;
+            color: white;
+        }
+
+        .analytics-section .section-heading p {
+            color: #bdbdbd;
+        }
+
+        .analytics-content {
+            max-width: 1100px;
+            margin: 55px auto 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .analytics-text h3 {
+            font-size: 29px;
+            margin-bottom: 17px;
+        }
+
+        .analytics-text p {
+            color: #bdbdbd;
+            line-height: 1.75;
+            margin-bottom: 22px;
+        }
+
+        .analytics-list {
+            list-style: none;
+        }
+
+        .analytics-list li {
+            margin-bottom: 13px;
+            color: #ddd;
+            font-size: 14px;
+        }
+
+        .analytics-list li::before {
+            content: "✓";
+            color: #a38cff;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .score-card {
+            background: #242424;
+            border: 1px solid #393939;
+            border-radius: 18px;
+            padding: 27px;
+        }
+
+        .score-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .score-header span {
+            color: #bdbdbd;
+            font-size: 13px;
+        }
+
+        .score-number {
+            font-size: 39px;
+            font-weight: 800;
+        }
+
+        .score-row {
+            margin-bottom: 20px;
+        }
+
+        .score-row-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+
+        .score-bar {
+            height: 7px;
+            border-radius: 10px;
+            background: #3b3b3b;
+            overflow: hidden;
+        }
+
+        .score-fill {
+            height: 100%;
+            background: #9a83ff;
+            border-radius: 10px;
+        }
+
+        /* ================= CTA ================= */
+
+        .cta {
+            padding: 95px 7%;
+            text-align: center;
+            background: #faf9ff;
+        }
+
+        .cta h2 {
+            font-size: 43px;
+            letter-spacing: -1.5px;
+            margin-bottom: 16px;
+        }
+
+        .cta p {
+            color: #6b6b6b;
+            margin-bottom: 28px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: white;
+            border-top: 1px solid #eeeeee;
+            padding: 55px 7% 25px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 45px;
+        }
+
+        .footer-brand p {
+            margin-top: 15px;
+            max-width: 330px;
+            color: #707070;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            margin-bottom: 17px;
+        }
+
+        .footer-column a {
+            display: block;
+            text-decoration: none;
+            color: #707070;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .footer-column a:hover {
+            color: #7357ff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #ededed;
+            padding-top: 22px;
+            color: #858585;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 950px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                padding-top: 65px;
+            }
+
+            .hero-left,
+            .hero-right {
+                width: 100%;
+            }
+
+            .hero-right {
+                margin-top: 25px;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .role-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .analytics-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            .nav-buttons {
+                display: none;
+            }
+
+            .hero {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .hero h1 {
+                font-size: 44px;
+                letter-spacing: -2px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .primary-btn,
+            .secondary-btn {
+                width: 100%;
+            }
+
+            .section {
+                padding: 70px 5%;
+            }
+
+            .section-heading h2,
+            .cta h2 {
+                font-size: 33px;
+            }
+
+            .feature-grid,
+            .role-grid,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <div class="logo">
+        <div class="logo-icon">AI</div>
+        <span>MockInterview</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#roles">Roles</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#analytics">Analytics</a>
+    </div>
+
+    <div class="nav-buttons">
+        <button class="login-btn" onclick="login()">Log In</button>
+        <button class="signup-btn" onclick="signup()">Sign Up</button>
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-left">
+
+        <div class="small-badge">
+            <span></span>
+            AI-Powered B.Tech Interview Practice
+        </div>
+
+        <h1>
+            Practice Smarter.<br>
+            <span class="highlight">Interview Better.</span>
+        </h1>
+
+        <p class="hero-description">
+            Prepare for technical interviews with an AI-powered mock
+            interview simulator designed specifically for B.Tech and
+            Computer Science students.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary-btn" onclick="startPractice()">
+                Start Practice →
+            </button>
+
+            <button class="secondary-btn" onclick="scrollToRoles()">
+                Explore Roles
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-right">
+
+        <div class="interview-preview">
+
+            <div class="preview-top">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+
+            <div class="preview-body">
+
+                <div class="video-area">
+
+                    <div class="avatar">
+                        <div class="hair"></div>
+                    </div>
+
+                    <div class="preview-button">
+                        START ANSWER
+                    </div>
+
+                </div>
+
+                <div class="preview-bottom">
+
+                    <div class="question-preview">
+                        <strong>Main Question</strong><br><br>
+                        Can you tell me about yourself?
+                    </div>
+
+                    <div class="side-preview">
+                        <strong>Software Engineer</strong>
+                        <br><br>
+                        Warm Up
+
+                        <div class="progress">
+                            <div class="progress-fill"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="section features" id="features">
+
+    <div class="section-heading">
+
+        <div class="label">Practice Platform</div>
+
+        <h2>Everything you need to prepare</h2>
+
+        <p>
+            Practice realistic interviews, improve your responses,
+            and understand where you can improve before facing a
+            real technical interview.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">AI</div>
+
+            <h3>AI Mock Interviews</h3>
+
+            <p>
+                Practice with an AI interviewer that asks questions,
+                listens to your responses and guides you through
+                a realistic interview experience.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">R</div>
+
+            <h3>Role-Based Questions</h3>
+
+            <p>
+                Questions are selected according to the B.Tech role
+                you choose, so every interview focuses on relevant
+                technical skills.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">D</div>
+
+            <h3>Difficulty Levels</h3>
+
+            <p>
+                Choose Easy, Medium or Hard difficulty and practice
+                according to your current preparation level.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">T</div>
+
+            <h3>Flexible Duration</h3>
+
+            <p>
+                Choose a 5, 15 or 30 minute interview depending on
+                how much time you have available.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">M</div>
+
+            <h3>Multiple Interview Rounds</h3>
+
+            <p>
+                Practice Warm Up, Coding, Role Related and
+                Behavioral interview rounds.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">A</div>
+
+            <h3>Post-Interview Analytics</h3>
+
+            <p>
+                Review your performance, communication and response
+                quality after completing an interview.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ROLES ================= -->
+
+<section class="section roles-section" id="roles">
+
+    <div class="section-heading">
+
+        <div class="label">B.Tech Roles</div>
+
+        <h2>Choose your interview role</h2>
+
+        <p>
+            Each role has its own question bank designed around
+            the technical skills and responsibilities associated
+            with that role.
+        </p>
+
+    </div>
+
+
+    <div class="role-grid">
+
+        <div class="role-card" onclick="selectRole('Software Engineer')">
+            <div class="role-number">01</div>
+            <h3>Software Engineer</h3>
+            <p>Programming, DSA, problem solving and software development.</p>
+        </div>
+
+
+        <div class="role-card" onclick="selectRole('Frontend Developer')">
+            <div class="role-number">02</div>
+            <h3>Frontend Developer</h3>
+            <p>HTML, CSS, JavaScript, UI development and frontend frameworks.</p>
+        </div>
+
+
+        <div class="role-card" onclick="selectRole('Backend Developer')">
+            <div class="role-number">03</div>
+            <h3>Backend Developer</h3>
+            <p>APIs, databases, server-side programming and backend systems.</p>
+        </div>
+
+
+        <div class="role-card" onclick="selectRole('Full Stack Developer')">
+            <div class="role-number">04</div>
+            <h3>Full Stack Developer</h3>
+            <p>Frontend, backend, databases and complete web applications.</p>
+        </div>
+
+
+        <div class="role-card" onclick="selectRole('Data Scientist')">
+            <div class="role-number">05</div>
+            <h3>Data Scientist / AI-ML</h3>
+            <p>Python, statistics, machine learning and data science.</p>
+        </div>
+
+
+        <div class="role-card" onclick="selectRole('Data Analyst')">
+            <div class="role-number">06</div>
+            <h3>Data Analyst</h3>
+            <p>SQL, data analysis, visualization and analytical thinking.</p>
+        </div>
+
+
+        <div class="role-card" onclick="selectRole('Cybersecurity Engineer')">
+            <div class="role-number">07</div>
+            <h3>Cybersecurity Engineer</h3>
+            <p>Networks, security concepts, vulnerabilities and protection.</p>
+        </div>
+
+
+        <div class="role-card" onclick="selectRole('Cloud Engineer')">
+            <div class="role-number">08</div>
+            <h3>Cloud / DevOps Engineer</h3>
+            <p>Cloud platforms, Linux, deployment, containers and DevOps.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section class="section" id="how-it-works">
+
+    <div class="section-heading">
+
+        <div class="label">Simple Process</div>
+
+        <h2>How your mock interview works</h2>
+
+        <p>
+            A simple four-step process to help you practice
+            like you're in a real interview.
+        </p>
+
+    </div>
+
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="step-number">1</div>
+
+            <h3>Choose Your Role</h3>
+
+            <p>
+                Select the B.Tech role you want to practice for.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">2</div>
+
+            <h3>Set Interview</h3>
+
+            <p>
+                Select the round, difficulty and interview duration.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">3</div>
+
+            <h3>Practice With AI</h3>
+
+            <p>
+                Answer role-specific questions with the AI interviewer.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">4</div>
+
+            <h3>Get Feedback</h3>
+
+            <p>
+                Review your performance and identify areas to improve.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ANALYTICS ================= -->
+
+<section class="section analytics-section" id="analytics">
+
+    <div class="section-heading">
+
+        <div class="label">Post-Interview Analytics</div>
+
+        <h2>Understand your performance</h2>
+
+        <p>
+            Your interview doesn't end when you finish answering.
+            Review your responses and understand your performance.
+        </p>
+
+    </div>
+
+
+    <div class="analytics-content">
+
+        <div class="analytics-text">
+
+            <h3>Detailed interview feedback</h3>
+
+            <p>
+                After completing your interview, the platform provides
+                structured feedback so you can identify strengths and
+                areas that need more practice.
+            </p>
+
+            <ul class="analytics-list">
+
+                <li>Overall interview performance</li>
+
+                <li>Response relevancy</li>
+
+                <li>Communication analysis</li>
+
+                <li>Question-by-question feedback</li>
+
+                <li>What went well</li>
+
+                <li>What you can improve</li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="score-card">
+
+            <div class="score-header">
+
+                <div>
+                    <span>Interview Score</span>
+                </div>
+
+                <div class="score-number">82</div>
+
+            </div>
+
+
+            <div class="score-row">
+
+                <div class="score-row-top">
+                    <span>Response Relevancy</span>
+                    <span>86%</span>
+                </div>
+
+                <div class="score-bar">
+                    <div class="score-fill" style="width:86%;"></div>
+                </div>
+
+            </div>
+
+
+            <div class="score-row">
+
+                <div class="score-row-top">
+                    <span>Communication</span>
+                    <span>79%</span>
+                </div>
+
+                <div class="score-bar">
+                    <div class="score-fill" style="width:79%;"></div>
+                </div>
+
+            </div>
+
+
+            <div class="score-row">
+
+                <div class="score-row-top">
+                    <span>Technical Response</span>
+                    <span>84%</span>
+                </div>
+
+                <div class="score-bar">
+                    <div class="score-fill" style="width:84%;"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta">
+
+    <h2>Ready to practice?</h2>
+
+    <p>
+        Choose your B.Tech role and start your AI-powered mock interview.
+    </p>
+
+    <button class="primary-btn" onclick="startPractice()">
+        Start Your Interview →
+    </button>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-top">
+
+        <div class="footer-brand">
+
+            <div class="logo">
+                <div class="logo-icon">AI</div>
+                <span>MockInterview</span>
+            </div>
+
+            <p>
+                An AI-powered mock interview simulator created
+                to help B.Tech students practice technical interviews
+                and build interview confidence.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Platform</h4>
+
+            <a href="#features">Features</a>
+            <a href="#roles">Roles</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#analytics">Analytics</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Interview</h4>
+
+            <a href="#roles">Role Based</a>
+            <a href="#roles">Coding</a>
+            <a href="#roles">Behavioral</a>
+            <a href="#roles">Technical</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Account</h4>
+
+            <a href="#" onclick="login(); return false;">Log In</a>
+            <a href="#" onclick="signup(); return false;">Sign Up</a>
+            <a href="#home">Home</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>© 2026 AI MockInterview Simulator</span>
+
+        <span>B.Tech Interview Practice Platform</span>
+
+    </div>
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    function startPractice() {
+
+        /*
+            For the fresh project, the next page will be:
+            role-based.html
+
+            We will create that page in STEP 2.
+        */
+
+        window.location.href = "role-based.html";
+    }
+
+
+    function scrollToRoles() {
+
+        document.getElementById("roles").scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+
+    function selectRole(role) {
+
+        /*
+            Store the selected role so the next pages
+            know which role the student selected.
+        */
+
+        localStorage.setItem("selectedRole", role);
+
+        window.location.href = "role-based.html";
+    }
+
+
+    function login() {
+
+        window.location.href = "login.html";
+
+    }
+
+
+    function signup() {
+
+        window.location.href = "signup.html";
+
+    }
+
+</script>
+
+</body>
+</html>
